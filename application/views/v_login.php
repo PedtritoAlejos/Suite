@@ -10,7 +10,7 @@
                 </div>
                 <div class="row loginbox">                    
                     <div class="col-lg-12">
-                        <span class="singtext" >Iniciar Sesion </span>   
+                        <span class="singtext" >Iniciar Sesión </span>   
                     </div>
                   <?php echo form_open(base_url("index.php/c_crud/iniciar_sesion")) ?>
                     <div class="col-lg-12 col-md-12 col-sm-12">
