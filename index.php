@@ -312,4 +312,5 @@ switch (ENVIRONMENT)
  *
  * And away we go...
  */
+        /*esto es un comenatario de prueba*/
 require_once BASEPATH.'core/CodeIgniter.php';
