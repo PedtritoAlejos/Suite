@@ -180,7 +180,10 @@ class c_crud extends CI_Controller {
            }else{
                //si todo es correcto con la validaciones de entrada de formato 
                //// se llama al metodo que valida las credenciales del usuario en la base de datos 
-           $this->validar_usuario($this->input->post("correo"), $this->input->post("clave"));
+          $this->validar_usuario($this->input->post("correo"), $this->input->post("clave"));
+         
+           
+         
                }
       }else{
         

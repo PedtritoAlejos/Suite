@@ -23,9 +23,13 @@ if($this->session->userdata('id_tipo_usuario')){
 
     <!-- Morris Charts CSS -->
     <link href="<?php echo base_url("plantilla/css/plugins/morris.css") ?>" rel="stylesheet">
+   
+    <link href="<?php  echo base_url("plantilla/datatables/media/css/jquery.dataTables.min.css") ?>" rel="stylesheet">
 
     <!-- Custom Fonts -->
+   
     <link href="<?php echo base_url("plantilla/font-awesome/css/font-awesome.min.css"); ?>" rel="stylesheet" type="text/css">
+    <link href="<?php echo base_url("plantilla/datatables/media/css/tablaPersonalizado.css"); ?>" rel="stylesheet" type="text/css">
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -49,6 +53,10 @@ en: {
 }
 };
 
+</script>
+ <script >
+var base_url ;
+        base_url= '<?php echo base_url()?>';
 </script>
 
 </head>

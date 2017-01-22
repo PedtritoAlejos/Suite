@@ -5,8 +5,8 @@
                 <ul class="nav navbar-nav side-nav">
                     <?php if($this->session->userdata('id_tipo_usuario')=='1')  { ?>
                     
-                    <li>
-                        <a href="index.html"><i class="glyphicon glyphicon-user"></i> Administrar usuarios</a>
+                    <li id="usuario">
+                        <a href="<?=base_url("index.php/c_usuario/index_usuario") ?>"><i class="glyphicon glyphicon-user"></i> Administrar usuarios</a>
                     </li>
                      <li>
                         <a href="charts.html"><i class="fa fa-fw fa-bar-chart-o"></i> Administrar servicios</a>
@@ -29,7 +29,7 @@
                         </ul>
                     </li>
                     <li id="cliente" >
-                        <a href="forms.html" ><i class="fa fa-fw fa-edit"></i> Agregar cliente</a>
+                        <a href="<?=base_url("index.php/c_crud/index")?>" ><i class="fa fa-fw fa-edit"></i> Agregar cliente</a>
                     </li>
                      <li>
                         <a href="bootstrap-grid.html"><i class="fa fa-fw fa-wrench"></i> Gestionar cliente</a>

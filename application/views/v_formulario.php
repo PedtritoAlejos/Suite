@@ -144,45 +144,11 @@
 </div>
 </div>
                         </div>
-<!--                            <div class="form-group">
-                              <button type="button" class="btn btn-primary" data-toggle="modal"  data-target="#myModal"><span class="glyphicon glyphicon-plus"></span> Agregar nuevo componente</button>
-                            </div>-->
-                        <!-- -->
-                        <!-- Modal -->
-
-                        <!-- -->
-
-
 
            
                     </div>
                 </div>
-                <!-- /.row -->
-
+          
             </div>
-            <!-- /.container-fluid -->
-
+         
         </div>
-        <!-- /#page-wrapper -->
-
-    <!-- /#wrapper -->
-
-    <!-- jQuery -->
-    <script src="<?php echo base_url("plantilla/js/jquery.js")?>"></script>
-
-    <!-- Bootstrap Core JavaScript -->
-    <script src="<?php echo base_url("plantilla/js/bootstrap.min.js"); ?>"></script>
-
-    <script>
-    var url=document.URL;
-
-switch (url.toString()) {
-    case 'http://localhost/Proyecto(1)/index.php/c_crud/iniciar_sesion':
-   $('#cliente').addClass('active');
-        break;
-
-    default:
-        
-        break;
-}
-    </script>

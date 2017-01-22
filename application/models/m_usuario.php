@@ -33,4 +33,13 @@ class m_usuario  extends CI_Model{
 			return null;
 		}
 	}
+        
+        public function get_usuarios(){
+//            return $this->db->get("usuario")->result();
+            
+             $this->db->select("CONCAT(run_usuario,  '-', dv_run) as 'run_usuario' ,CONCAT(nombre,' ',apellido_paterno,' ',apellido_materno)
+as 'nombre',correo,contrasenha,Activo,id_tipo_usuario");
+            return $this->db->get("usuario")->result();
+              
+        }
 }
