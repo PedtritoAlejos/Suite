@@ -68,5 +68,8 @@ class c_usuario extends CI_Controller {
         }
     
     }
+    public function imprimir_mensaje(){
+        echo "hola mundo";
+    }
 }
     
