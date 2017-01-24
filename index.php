@@ -314,4 +314,5 @@ switch (ENVIRONMENT)
  */
         /*esto es un comenatario de prueba*/
 require_once BASEPATH.'core/CodeIgniter.php';
-//hola soy un comentario 13:31 24/01/2017
+//hola 2 soy un comentario 13:31 24/01/2017
+//hola 2
