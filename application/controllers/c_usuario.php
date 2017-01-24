@@ -18,10 +18,11 @@ class c_usuario extends CI_Controller {
         parent::_construct();
     }
     public function index_usuario(){
-         $this->load->view("cabecera");
+        $lista =$this->listar_tipos_usuarios();
+        $this->load->view("cabecera");
         $this->load->view("v_menu_superior");
         $this->load->view("v_menu_items");
-        $this->load->view("v_usuario", compact("nombres","tipos_componentes","tipos_servicios"));
+        $this->load->view("v_usuario", compact("lista"));
         $this->load->view("v_footer");
     }
     
@@ -51,4 +52,21 @@ class c_usuario extends CI_Controller {
          echo   json_encode($this->m_usuario->get_usuarios());
         
     }
+    public function listar_tipos_usuarios(){
+       $this->load->model("m_usuario");
+      return $this->m_usuario->mostrar_tipos_usuarios();  
+        
+    }
+    public function eliminar_usuario(){
+         
+        if($this->input->is_ajax_request())
+        {
+            $run = $this->input->post("id");
+            $this->load->model("m_usuario");
+            $this->m_usuario->eliminar_usuario($run);
+            echo json_encode(array("status" => "success"));
+        }
+    
+    }
 }
+    
