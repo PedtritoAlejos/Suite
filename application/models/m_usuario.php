@@ -14,6 +14,7 @@
 class m_usuario  extends CI_Model{
     //put your code here
      const STATUS_DELETED = 0; //constante con el valor de eliminado
+     const STATUS_ACTIVO = 1; //constante con el valor de Usuario activo
   public function __construct() {
 		parent::__construct();
 	}
@@ -35,7 +36,7 @@ class m_usuario  extends CI_Model{
 	}
         
         public function get_usuarios(){
-                $this->db->where("Activo",1);
+                $this->db->where("Activo", self::STATUS_ACTIVO);
            return $this->db->get("usuario")->result();
 //            
 //             $this->db->select("CONCAT(run_usuario,  '-', dv_run) as 'run_usuario' ,CONCAT(nombre,' ',apellido_paterno,' ',apellido_materno)
@@ -49,5 +50,21 @@ class m_usuario  extends CI_Model{
         public function mostrar_tipos_usuarios(){
             return $this->db->get("tipo_usuario")->result();
            
+        }
+        
+        public function agregar_usuario($run,$dv_run,$nombre,$paterno,$materno,$correo,$clave,$tipo){
+           $data = array(
+                            'run' => $run,
+                            'dv_run' => $dv_run ,
+                            'nombre' => $nombre,
+                            'apellido_paterno' => $paterno,
+                            'apellido_materno' => $materno,
+                            'correo' => $correo,
+                            'contrasenha'=> $clave,
+                            'Activo' => self::STATUS_ACTIVO,
+                            'id_tipo_usuario' => $tipo
+                         );
+
+           return $this->db->insert('mytable', $data); 
         }
 }
