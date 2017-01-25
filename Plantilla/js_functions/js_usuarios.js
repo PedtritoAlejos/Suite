@@ -27,7 +27,7 @@ var table;
                               <span class='sr-only'>Toggle Dropdown</span>\n\
                             </button>\n\
                             <ul class='dropdown-menu'>\n\
-                                <li><a href='#'><span class='glyphicon glyphicon-edit'></span> Modificar</a></li>\n\
+                                <li><a href='#' onclick='modificar_user("+row.run_usuario+",\x22"+row.dv_run+"\x22 ,\x22"+row.nombre+"\x22 ,\x22"+row.apellido_paterno+"\x22,\x22"+row.apellido_materno+"\x22 ,\x22"+row.correo+"\x22,\x22"+row.clave+"\x22,\x22"+row.id_tipo_usuario+"\x22)'><span class='glyphicon glyphicon-edit'></span> Modificar</a></li>\n\
                                 <li><a href='#' onclick='delete_user("+row.run_usuario+",\x22"+row.nombre+"\x22 ,\x22"+row.apellido_paterno+"\x22)'><span class='glyphicon glyphicon-trash'></span> Eliminar</a></li>\n\
                                 </ul>\n\
                       </div>";
@@ -87,13 +87,9 @@ table.columns( [2,4,5]).visible( false, false );
 
 });
 
- 
-
-    
-  
 
 
-function delete_user(run ,nombre ,apellido){
+function delete_user(run ,nombre ,apellido){//metodo que pregunta en una ventana modal si se quiere eliminar
    $('.grupo2').hide();
    $('.grupo1').show();
    $('#run_usuario').val(run);
@@ -102,7 +98,52 @@ function delete_user(run ,nombre ,apellido){
   
  
 }
+function modificar_user(run ,dv,nombre ,paterno,materno,correo,clave,tipo){//metodo que pregunta en una ventana modal si se quiere modificar
+  $('#run').val(run); $('#nombre').val(nombre);
+  $('#dv_run').val(dv);
+  $('#paterno').val(paterno);$('#materno').val(materno);
+  $('#correo').val(correo); $('#clave').val(clave);
+  $('#tipo_usuario').val(tipo);
+  $('#modal_formulario').modal('show');
+ 
+ 
+}
+  //'<?php echo $this->security->get_csrf_token_name(); ?>' : '<?php echo $this->security->get_csrf_hash(); ?>'
+function modificar_usuario(){
+     $.ajax({
+                    type: "POST",
+                    async: false,
+                    dataType: "json",
+                    data: {
+                        run:$('#run').val(),
+                      
+                        nombre:$('#nombre').val(),
+                        paterno:$('#paterno').val(),
+                        materno:$('#materno').val(),
+                        correo:$('#correo').val(),
+                        clave:$('#clave').val(),
+                        tipo:$('#tipo_usuario').val()
+                       
+                      
+                    },
+                    url: base_url+'index.php/c_usuario/modificar_ajax',
+                    success: function(data)
+                    {
+//                       
+                        if(data.status === "success")
+                        {
+                           table.ajax.reload();
+                          mensaje_modal("Usuario actualizado correctamente");
+                        }
+                        else
+                        {
+                            mensaje_modal("error al actualizar");
+                        }
+                    }
+                });
 
+        
+}
 
 
 function eliminar_usuario()
