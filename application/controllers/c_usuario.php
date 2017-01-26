@@ -62,20 +62,20 @@ class c_usuario extends CI_Controller {
        
          $this->form_validation->set_rules('run', 'Run', 'required|numeric|max_length[10]');
          $this->form_validation->set_rules('dv', 'Dv', 'required|callback_formato_dv');
-         $this->form_validation->set_rules('nombre', 'Nombre', 'required|callback_letras_formato');
-         $this->form_validation->set_rules('paterno', 'Paterno', 'required|callback_letras_formato');
-         $this->form_validation->set_rules('materno', 'Materno', 'required|callback_letras_formato');
+         $this->form_validation->set_rules('nombre', 'Nombre', 'required|callback_letras_acentos_formato');
+         $this->form_validation->set_rules('paterno', 'Paterno', 'required|callback_letras_acentos_formato');
+         $this->form_validation->set_rules('materno', 'Materno', 'required|callback_letras_acentos_formato');
          $this->form_validation->set_rules('correo', 'Correo', 'required|valid_email');
          $this->form_validation->set_rules('clave', 'Clave', 'required|callback_formato_clave');
          $this->form_validation->set_rules('tipo_usuario', 'Tipo usuario', 'required|numeric');
          
           $this->form_validation->set_message('required', 'El campo {field} es requerido');
-          $this->form_validation->set_message('letras_formato', 'El campo {field} debe contener solo letras');
+          $this->form_validation->set_message('letras_acentos_formato', 'El campo {field} debe contener solo letras');
           $this->form_validation->set_message('max_length', 'El campo {field} debe tener un máximo de 10 caracteres');
           $this->form_validation->set_message('numeric', 'El campo {field} debe ser numerico');
           $this->form_validation->set_message('email', 'El campo {field} no tiene el formato correcto');
           $this->form_validation->set_message('formato_dv', 'El campo {field} no tiene el formato correcto');
-          $this->form_validation->set_message('formato_clave', 'El campo {field} no tiene el formato correcto debe ser solo numeros y letras');
+          $this->form_validation->set_message('formato_clave', 'El campo {field} no tiene el formato correcto debe ser solo números y letras');
           
           if($this->form_validation->run()) /**/
           {
@@ -108,16 +108,16 @@ class c_usuario extends CI_Controller {
         {
          $this->form_validation->set_rules('run_m', 'Run', 'required|numeric|max_length[10]');
        
-         $this->form_validation->set_rules('nombre_m', 'Nombre', 'required|callback_letras_formato');
-         $this->form_validation->set_rules('paterno_m', 'Apellido Paterno', 'required|callback_letras_formato');
-         $this->form_validation->set_rules('materno_m', 'Apellido Materno', 'required|callback_letras_formato');
+         $this->form_validation->set_rules('nombre_m', 'Nombre', 'required|callback_letras_acentos_formato');
+         $this->form_validation->set_rules('paterno_m', 'Apellido Paterno', 'required|callback_letras_acentos_formato');
+         $this->form_validation->set_rules('materno_m', 'Apellido Materno', 'required|callback_letras_acentos_formato');
          $this->form_validation->set_rules('correo_m', 'Correo', 'required|valid_email');
          $this->form_validation->set_rules('clave_m', 'Clave', 'required|callback_formato_clave');
          $this->form_validation->set_rules('tipo_m', 'Tipo usuario', 'required|numeric');
          
           $this->form_validation->set_message('required', 'El campo {field} es requerido');
-          $this->form_validation->set_message('letras_formato', 'El campo {field} debe contener solo letras');
-          $this->form_validation->set_message('max_length', 'El campo {field} debe tener un máximo de 10 caracteres');
+          $this->form_validation->set_message('letras_acentos_formato', 'El campo {field} debe contener solo letras');
+          $this->form_validation->set_message('max_length', 'El campo {field} debe tener un mÃ¡ximo de 10 caracteres');
           $this->form_validation->set_message('numeric', 'El campo {field} debe ser numerico');
           $this->form_validation->set_message('email', 'El campo {field} no tiene el formato correcto');
           $this->form_validation->set_message('formato_dv', 'El campo {field} no tiene el formato correcto');
@@ -165,7 +165,7 @@ class c_usuario extends CI_Controller {
                         'class'          =>'form-control',
                         'value'          => set_value('clave'),
                         'required'       =>'true',
-                        'placeholder'    =>'Ingrese su contraseña',
+                        'placeholder'    =>'Ingrese su contraseÃ±a',
                         'type'           =>'password')
            
         );
@@ -175,7 +175,7 @@ class c_usuario extends CI_Controller {
           $permitidos = "0123456789kK";
         for ($i = 0; $i < strlen($param); $i++) {
             if (strpos($permitidos, substr($param, $i, 1)) === false) {
-                //no es válido; 
+                //no es vÃ¡lido; 
                 return false;
             }
         }
@@ -184,18 +184,27 @@ class c_usuario extends CI_Controller {
     }
    
     
-   function letras_formato($fullname){
+   function letras_formato($fullname){ //solo letras sin acentos
         if (! preg_match('/^[a-zA-Z]+$/', $fullname)) {
        return FALSE;
         } else {
         return TRUE;
         }
-}
+   }
+   function letras_acentos_formato($fullname){ //letras y acentos
+        if(preg_match('/^[a-záéíóúñüÁÉÍÓÚÑÜ]+$/i',$fullname)){
+            return true;
+        }else{
+            return false;
+        }
+   }
+      
+
     public function formato_clave($param) {
           $permitidos = "0123456789.abcdefghijklmnopqrstuvwxyzABCDEFGHIJKJLMNOPQRSTUVWYXZ";
         for ($i = 0; $i < strlen($param); $i++) {
             if (strpos($permitidos, substr($param, $i, 1)) === false) {
-                //no es válido; 
+                //no es vÃ¡lido; 
                 return false;
             }
         }

@@ -12,7 +12,7 @@
                     <div class="col-lg-12">
                         <span class="singtext" >Iniciar Sesión </span>   
                     </div>
-                  <?php echo form_open(base_url("index.php/c_crud/iniciar_sesion")) ?>
+                  <?php echo form_open(base_url("index.php/c_crud/iniciar_sesion","class='form-inline'")) ?>
                     <div class="col-lg-12 col-md-12 col-sm-12">
                    <?php  if(validation_errors()){
       echo "<div class='alert alert-danger alert-dismissable'>
@@ -29,8 +29,18 @@
                             <?php echo form_input($correo); ?>
                         
                     </div>
+                      
+                          
                     <div class="col-lg-12  col-md-12 col-sm-12">
-                         <?php echo form_input($clave); ?>
+                        <div class="form-group">
+                         <?php echo form_input($clave); ?>&nbsp;
+                            <label class="form-check-label">
+                                <div class="checkbox-inline">
+                                <input  type="checkbox">   <span ><a>Mostar contraseña</a></span> 
+    </label>
+                        
+                      </div>  
+                      </div>  
                     </div>
                     <div class="col-lg-12  col-md-12 col-sm-12">
                

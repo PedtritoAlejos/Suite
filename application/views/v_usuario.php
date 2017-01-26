@@ -278,7 +278,7 @@
               <br>
                <div class="input-group">
                <span class="input-group-addon" id="basic-addon2">Contraseña</span>    
-               <input type="password" id="clave" class="form-control" required="true"  placeholder="Ingrese.." aria-describedby="basic-addon2">
+               <input type="password" id="clave_us" class="form-control" required="true"  placeholder="Ingrese.." aria-describedby="basic-addon2">
                  <span class="input-group-addon" id="basic-addon2">Tipo usuario</span>   
                 <select class="form-control" required="true" id="tipo_usuario" >
                      <option value="" required="true">Seleccione</option>

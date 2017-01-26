@@ -27,7 +27,7 @@ var table;
                               <span class='sr-only'>Toggle Dropdown</span>\n\
                             </button>\n\
                             <ul class='dropdown-menu'>\n\
-                                <li><a href='#' onclick='modificar_user("+row.run_usuario+",\x22"+row.dv_run+"\x22 ,\x22"+row.nombre+"\x22 ,\x22"+row.apellido_paterno+"\x22,\x22"+row.apellido_materno+"\x22 ,\x22"+row.correo+"\x22,\x22"+row.clave+"\x22,\x22"+row.id_tipo_usuario+"\x22)'><span class='glyphicon glyphicon-edit'></span> Modificar</a></li>\n\
+                                <li><a href='#' onclick='modificar_user("+row.run_usuario+",\x22"+row.dv_run+"\x22 ,\x22"+row.nombre+"\x22 ,\x22"+row.apellido_paterno+"\x22,\x22"+row.apellido_materno+"\x22 ,\x22"+row.correo+"\x22,\x22"+row.contrasenha+"\x22,\x22"+row.id_tipo_usuario+"\x22)'><span class='glyphicon glyphicon-edit'></span> Modificar</a></li>\n\
                                 <li><a href='#' onclick='delete_user("+row.run_usuario+",\x22"+row.nombre+"\x22 ,\x22"+row.apellido_paterno+"\x22)'><span class='glyphicon glyphicon-trash'></span> Eliminar</a></li>\n\
                                 </ul>\n\
                       </div>";
@@ -102,7 +102,7 @@ function modificar_user(run ,dv,nombre ,paterno,materno,correo,clave,tipo){//met
   $('#run').val(run); $('#nombre').val(nombre);
   $('#dv_run').val(dv);
   $('#paterno').val(paterno);$('#materno').val(materno);
-  $('#correo').val(correo); $('#clave').val(clave);
+  $('#correo').val(correo); $('#clave_us').val(clave);
   $('#tipo_usuario').val(tipo);
   $('#modal_formulario').modal('show');
  
@@ -121,7 +121,7 @@ function modificar_usuario(){
                         paterno_m:$('#paterno').val(),
                         materno_m:$('#materno').val(),
                         correo_m:$('#correo').val(),
-                        clave_m:$('#clave').val(),
+                        clave_m:$('#clave_us').val(),
                         tipo_m:$('#tipo_usuario').val()
                        
                       
