@@ -47,14 +47,14 @@ class m_usuario  extends CI_Model{
         public function eliminar_usuario($run){
              $this->db->set("Activo", self::STATUS_DELETED)->where("run_usuario", $run)->update("usuario");
         }
-        public function mostrar_tipos_usuarios(){
+        public function mostrar_tipos_usuarios(){//listar para el combo box
             return $this->db->get("tipo_usuario")->result();
            
         }
         
         public function agregar_usuario($run,$dv_run,$nombre,$paterno,$materno,$correo,$clave,$tipo){
            $data = array(
-                            'run' => $run,
+                            'run_usuario' => $run,
                             'dv_run' => $dv_run ,
                             'nombre' => $nombre,
                             'apellido_paterno' => $paterno,
@@ -65,6 +65,21 @@ class m_usuario  extends CI_Model{
                             'id_tipo_usuario' => $tipo
                          );
 
-           return $this->db->insert('mytable', $data); 
+           return $this->db->insert('usuario', $data); 
+        }
+        public function actualizar_usuario($run,$nombre,$paterno,$materno,$correo,$clave,$tipo){
+           $data = array(
+                            
+                            'nombre' => $nombre,
+                            'apellido_paterno' => $paterno,
+                            'apellido_materno' => $materno,
+                            'correo' => $correo,
+                            'contrasenha'=> $clave,
+                            'Activo' => self::STATUS_ACTIVO,
+                            'id_tipo_usuario' => $tipo
+                         );
+                         $this->db->where('run_usuario', $run);
+
+           return $this->db->update('usuario', $data); 
         }
 }

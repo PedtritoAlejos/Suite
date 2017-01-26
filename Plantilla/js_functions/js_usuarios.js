@@ -115,14 +115,14 @@ function modificar_usuario(){
                     async: false,
                     dataType: "json",
                     data: {
-                        run:$('#run').val(),
+                        run_m:$('#run').val(),
                       
-                        nombre:$('#nombre').val(),
-                        paterno:$('#paterno').val(),
-                        materno:$('#materno').val(),
-                        correo:$('#correo').val(),
-                        clave:$('#clave').val(),
-                        tipo:$('#tipo_usuario').val()
+                        nombre_m:$('#nombre').val(),
+                        paterno_m:$('#paterno').val(),
+                        materno_m:$('#materno').val(),
+                        correo_m:$('#correo').val(),
+                        clave_m:$('#clave').val(),
+                        tipo_m:$('#tipo_usuario').val()
                        
                       
                     },
@@ -137,7 +137,12 @@ function modificar_usuario(){
                         }
                         else
                         {
-                            mensaje_modal("error al actualizar");
+                        
+                            $("#msj").html("<div class='alert alert-danger alert-dismissable'>\n\
+  <button type='button' class='close' data-dismiss='alert'>&times;</button>\n\
+  <strong>¡Error!</strong> "+data.error+".\n\
+</div>");
+                            //muestra los errores
                         }
                     }
                 });

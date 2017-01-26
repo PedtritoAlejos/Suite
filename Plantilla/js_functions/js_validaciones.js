@@ -30,11 +30,11 @@ function validar_registro(){
                      
                                     if(tipo!=""||tipo.length!=0){
                      
-                     
-                    
+                                        // si todo es correcto se llama el metodo para agregar
+                                                agregar_usuario();
                                     }else{
                                          mensaje_modal("El campo Tipo usuario no puede estar vacio");
-                                         focuss("tipo"); 
+                                         focuss("tipo_usuario"); 
                                     }
                     
                             }else{
@@ -70,11 +70,13 @@ function validar_registro(){
         mensaje_modal("El campo Run no puede estar vacio");
         focuss("run");
   }
+    
 }
 
 function mensaje_modal(mensaje){
    $('#modalmensaje .modal-body p').text(mensaje);
    $('#modalmensaje').modal('show');
+   
 }
 function focuss(id){
     $("#btnmensaje").click( function(){

@@ -226,29 +226,7 @@
         
            
 
-        <div id="modalmensaje" class="modal fade" role="dialog">
-            <div class="modal-dialog">
-
-                <!-- Modal content-->
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal">&times;</button>
-                        <h4 class="modal-title">Mensaje</h4>
-                    </div>
-                    <div class="modal-body">
-                        <p></p>
-                    </div>
-                    <div class="modal-footer">
-                        <input type="hidden" id="run_usuario">
-
-
-                        <button type="button" class="btn btn-default grupo2" id="btnmensaje" data-dismiss="modal">Cerrar</button>
-
-                    </div>
-                </div>
-
-            </div>
-        </div>
+      
     </div>
 
 
@@ -267,18 +245,18 @@
                        <span class="sr-only">Cerrar</span>
                 </button>
                 <h4 class="modal-title" id="myModalLabel">
-                   Agregar usuario
+                   Actualizar usuario
                 </h4>
             </div>
             
             <!-- Modal Body -->
             <div class="modal-body">
-          
+                <div id="msj"></div>
                 <div class="input-group">
                      <span class="input-group-addon"  id="basic-addon1">Run</span>
-                     <input type="number" class="form-control" id="run"  maxlength="10" required="true" placeholder="Run usuario" aria-describedby="basic-addon1">
+                     <input type="number" class="form-control" disabled="true" id="run"  maxlength="10" required="true" placeholder="Run usuario" aria-describedby="basic-addon1">
                      <span class="input-group-addon" id="basic-addon1">-</span>
-                     <input type="text" class="form-control" maxlength="1"  id="dv_run" required="true" placeholder="k" aria-describedby="basic-addon1">
+                     <input type="text" class="form-control" maxlength="1"  disabled="true" id="dv_run" required="true" placeholder="k" aria-describedby="basic-addon1">
                 </div>       
            
               <br>
@@ -290,8 +268,9 @@
                 </div>
               <br>
                <div class="input-group">
+                
                <span class="input-group-addon" id="basic-addon2">Apellido materno</span>    
-               <input type="text" class="form-control" id="materno"  required="true" placeholder="Ingrese.." aria-describedby="basic-addon2">
+               <input type="text" class="form-control" id="materno"  name="materno_m" placeholder="Ingrese.." aria-describedby="basic-addon2">
                  <span class="input-group-addon" id="basic-addon2">Correo</span>   
                  <input type="email" class="form-control"  id="correo"  required="true" placeholder="correo.." aria-describedby="basic-addon2">
                 </div>
@@ -319,7 +298,7 @@
                         data-dismiss="modal">
                             Cerrar
                 </button>
-                <input type="submit" class="btn btn-primary"  value="Guardar registro"/>
+                <input type="submit" class="btn btn-primary"  value="Actualizar registro"/>
                
                    
               
@@ -331,5 +310,27 @@
 </div>
     <!-- -->
     </form>
-        
+       <div id="modalmensaje" class="modal fade" role="dialog">
+            <div class="modal-dialog">
+
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">Mensaje</h4>
+                    </div>
+                    <div class="modal-body">
+                        <p></p>
+                    </div>
+                    <div class="modal-footer">
+                        <input type="hidden" id="run_usuario">
+
+
+                        <button type="button" class="btn btn-default grupo2" id="btnmensaje" data-dismiss="modal">Cerrar</button>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>   
 </div>

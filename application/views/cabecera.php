@@ -57,6 +57,14 @@ en: {
  <script >
 var base_url ;
         base_url= '<?php echo base_url()?>';
+          $(document).ready(function(){
+                $("#form_update").submit(function(e){
+                    e.preventDefault();
+                 //llamo al metodo de actualizar usuario
+                  modificar_usuario();
+                });
+            });
 </script>
+ 
 
 </head>
