@@ -17,6 +17,7 @@ if($this->session->userdata('id_tipo_usuario')){
 
     <!-- Bootstrap Core CSS -->
     <link href="<?php echo base_url("plantilla/css/bootstrap.min.css"); ?>" rel="stylesheet">
+    <link href="<?php echo base_url("plantilla/css/estilos_personalizados.css"); ?>" rel="stylesheet">
 
     <!-- Custom CSS -->
     <link href="<?php echo base_url("plantilla/css/sb-admin.css") ?>" rel="stylesheet">

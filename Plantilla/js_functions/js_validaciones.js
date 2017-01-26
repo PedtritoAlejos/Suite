@@ -74,7 +74,7 @@ function validar_registro(){
 }
 
 function mensaje_modal(mensaje){
-   $('#modalmensaje .modal-body p').text(mensaje);
+   $('#modalmensaje .modal-body p').html('<span class="glyphicon glyphicon-arrow-right"></span>'+mensaje);
    $('#modalmensaje').modal('show');
    
 }

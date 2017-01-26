@@ -20,7 +20,7 @@ var table;
         render:function(data,type,row)
             {
                 return "<div class='btn-group'> \n\
-                            <button type='button' class='btn btn-primary'>Opción</button> \n\
+                            <button type='button' class='btn btn-primary'><span class='glyphicon glyphicon-cog'></span> Opción</button> \n\
                             <button type='button' class='btn btn-primary dropdown-toggle'\n\
                         data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'>\n\
                               <span class='caret'></span>\n\
@@ -93,7 +93,7 @@ function delete_user(run ,nombre ,apellido){//metodo que pregunta en una ventana
    $('.grupo2').hide();
    $('.grupo1').show();
    $('#run_usuario').val(run);
-   $('#modaldelete .modal-body p').text('Quieres eliminar al usuario '+nombre+' '+apellido);
+   $('#modaldelete .modal-body p').html('<span class="glyphicon glyphicon-record"></span> ¿Quieres eliminar al usuario '+nombre+' '+apellido+' ?');
    $('#modaldelete').modal('show');
   
  
@@ -133,7 +133,7 @@ function modificar_usuario(){
                         if(data.status === "success")
                         {
                            table.ajax.reload();
-                          mensaje_modal("Usuario actualizado correctamente");
+                          mensaje_modal('Usuario actualizado correctamente');
                         }
                         else
                         {

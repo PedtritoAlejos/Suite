@@ -118,7 +118,7 @@
                             }
                             ?>
                      
-                        <div class="panel-footer"> <button type="submit" class="btn btn-primary">Agregar Registro</button> </div>
+                        <div class="panel-footer"> <button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-pencil"></span>  Agregar Registro</button> </div>
                             
                     </div>
                             <?php echo form_close(); ?>
@@ -204,19 +204,19 @@
 
                 <!-- Modal content-->
                 <div class="modal-content">
-                    <div class="modal-header">
+                    <div class="modal-header alert alert-info">
                         <button type="button" class="close" data-dismiss="modal">&times;</button>
-                        <h4 class="modal-title">Mensaje</h4>
+                        <h4 class="modal-title"><span class="glyphicon glyphicon-pushpin"></span> Mensaje</h4>
                     </div>
                     <div class="modal-body">
-                        <p></p>
+                        <p> </p>
                     </div>
-                    <div class="modal-footer">
+                    <div class="modal-footer ">
                         <input type="hidden" id="run_usuario">
 
-                        <button type="button" class="btn btn-danger grupo1" onclick="eliminar_usuario()">Eliminar</button>
-                        <button type="button" class="btn btn-default grupo2" data-dismiss="modal">Cerrar</button>
-                        <button type="button" class="btn btn-default grupo1"  data-dismiss="modal">Cancelar</button>
+                        <button type="button" class="btn btn-danger grupo1" onclick="eliminar_usuario()"><span class="glyphicon glyphicon-trash"></span> Eliminar</button>
+                        <button type="button" class="btn btn-default grupo2" data-dismiss="modal"><span class="glyphicon glyphicon-remove-circle"></span> Cerrar</button>
+                        <button type="button" class="btn btn-default grupo1"  data-dismiss="modal"><span class="glyphicon glyphicon-remove"> </span> Cancelar</button>
                     </div>
                 </div>
 
@@ -238,14 +238,15 @@
         
         <div class="modal-content">
             <!-- Modal Header -->
-            <div class="modal-header">
+            <div class="modal-header alerta_azul">
                 <button type="button" class="close" 
                    data-dismiss="modal">
                        <span aria-hidden="true">&times;</span>
                        <span class="sr-only">Cerrar</span>
                 </button>
                 <h4 class="modal-title" id="myModalLabel">
-                   Actualizar usuario
+                    <span class="glyphicon glyphicon-folder-open"> </span> &nbsp;
+                    Actualizar usuario
                 </h4>
             </div>
             
@@ -270,7 +271,7 @@
                <div class="input-group">
                 
                <span class="input-group-addon" id="basic-addon2">Apellido materno</span>    
-               <input type="text" class="form-control" id="materno"  name="materno_m" placeholder="Ingrese.." aria-describedby="basic-addon2">
+               <input type="text" class="form-control" id="materno" required="true" name="materno_m" placeholder="Ingrese.." aria-describedby="basic-addon2">
                  <span class="input-group-addon" id="basic-addon2">Correo</span>   
                  <input type="email" class="form-control"  id="correo"  required="true" placeholder="correo.." aria-describedby="basic-addon2">
                 </div>
@@ -296,9 +297,9 @@
             <div class="modal-footer">
                 <button type="button" class="btn btn-default"
                         data-dismiss="modal">
-                            Cerrar
+                    <span class="glyphicon glyphicon-remove-sign"></span>  Cerrar
                 </button>
-                <input type="submit" class="btn btn-primary"  value="Actualizar registro"/>
+                <button type="submit" class="btn btn-primary"  ><span class="glyphicon glyphicon-refresh"></span> Actualizar datos</button>
                
                    
               
@@ -315,18 +316,18 @@
 
                 <!-- Modal content-->
                 <div class="modal-content">
-                    <div class="modal-header">
+                    <div class="modal-header  alerta_azul">
                         <button type="button" class="close" data-dismiss="modal">&times;</button>
-                        <h4 class="modal-title">Mensaje</h4>
+                        <h4 class="modal-title"><span class="glyphicon glyphicon-pushpin"></span> Mensaje</h4>
                     </div>
                     <div class="modal-body">
                         <p></p>
                     </div>
-                    <div class="modal-footer">
+                    <div class="modal-footer ">
                         <input type="hidden" id="run_usuario">
 
 
-                        <button type="button" class="btn btn-default grupo2" id="btnmensaje" data-dismiss="modal">Cerrar</button>
+                        <button type="button" class="btn btn-default grupo2" id="btnmensaje" data-dismiss="modal"><span class="glyphicon glyphicon-remove-circle"></span> Cerrar</button>
 
                     </div>
                 </div>
