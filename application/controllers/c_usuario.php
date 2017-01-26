@@ -22,31 +22,19 @@ class c_usuario extends CI_Controller {
         $this->load->view("cabecera");
         $this->load->view("v_menu_superior");
         $this->load->view("v_menu_items");
-        $this->load->view("v_usuario", compact("lista"));
+        $this->load->view("v_usuario", compact("lista","mensaje"));
+        $this->load->view("v_footer");
+    }
+    public function index_usuario_mensaje($mensaje){
+        $lista =$this->listar_tipos_usuarios();
+        $this->load->view("cabecera");
+        $this->load->view("v_menu_superior");
+        $this->load->view("v_menu_items");
+        $this->load->view("v_usuario", compact("lista","mensaje"));
         $this->load->view("v_footer");
     }
     
-//    public function get_usuarios(){
-//        $this->load->model('m_usuarios');
-//        $usuarios = $this->m_usuarios->get_users();
-//        $data =array();
-//        foreach ($usuarios as $user){
-//            $data[] =array (
-//                'run'=> $user->run_usuario,
-//                'dv_run'=>$user->dv_run,
-//                'nombre'=>$user->nombre,
-//                'apellido_p'=>$user->apellido_paterno,
-//                'apellido_m'=>$user->apellido_materno,
-//                'correo'=>$user->correo,
-//                'clave'=>$user->contrasenha,
-//                'activo'=>$user->Activo,
-//                'id_tipo_usuario'=>$user->id_tipo_usuario
-//                );
-//        }
-//        $this->output
-//                ->set_content_type('application/json')
-//                ->set_output(json_encode(array()));
-//     }
+
     public function get_usuarios_todos(){
         $this->load->model("m_usuario");
          echo   json_encode($this->m_usuario->get_usuarios());
@@ -68,20 +56,22 @@ class c_usuario extends CI_Controller {
         }
     
     }
-    public function agregar_usuario(){
-       if($this->input->is_ajax_requst() )
+    public function insertar_usuario(){
+       if(isset($_POST ))
        {
-         $this->form_validation->set_rules('run', 'Run', 'required|number');
+       
+         $this->form_validation->set_rules('run', 'Run', 'required|numeric|max_length[10]');
          $this->form_validation->set_rules('dv', 'Dv', 'required|callback_formato_dv');
          $this->form_validation->set_rules('nombre', 'Nombre', 'required');
          $this->form_validation->set_rules('paterno', 'Paterno', 'required');
          $this->form_validation->set_rules('materno', 'Materno', 'required');
-         $this->form_validation->set_rules('correo', 'Correo', 'required|email');
+         $this->form_validation->set_rules('correo', 'Correo', 'required|valid_email');
          $this->form_validation->set_rules('clave', 'Clave', 'required|callback_formato_clave');
-         $this->form_validation->set_rules('tipo', 'Tipo', 'required|number');
+         $this->form_validation->set_rules('tipo_usuario', 'Tipo usuario', 'required|numeric');
          
           $this->form_validation->set_message('required', 'El campo {field} es requerido');
-          $this->form_validation->set_message('number', 'El campo {field} debe ser numerico');
+          $this->form_validation->set_message('max_length', 'El campo {field} debe tener un máximo de 10 caracteres');
+          $this->form_validation->set_message('numeric', 'El campo {field} debe ser numerico');
           $this->form_validation->set_message('email', 'El campo {field} no tiene el formato correcto');
           $this->form_validation->set_message('formato_dv', 'El campo {field} no tiene el formato correcto');
           $this->form_validation->set_message('formato_clave', 'El campo {field} no tiene el formato correcto debe ser solo numeros y letras');
@@ -89,19 +79,94 @@ class c_usuario extends CI_Controller {
           if($this->form_validation->run()) /**/
           {
               
-           
-                if( $this->agregar_usuario($this->input->post("run"),$this->input->post("dv"),
-                   $this->input->post("nombre"),$this->input->post("paterno"),$this->input->post("materno"),
-                   $this->input->post("correo"),$this->input->post("clave"),$this->input->post("tipo")) )
-                {
+                  
+            if( $this->agregar_usuario_($this->input->post("run"), $this->input->post("dv"), $this->input->post("nombre"), $this->input->post("paterno"), $this->input->post("materno"), $this->input->post("correo"), $this->input->post("clave"), $this->input->post("tipo_usuario"))){
+                $mensaje=' <div class="alert alert-success alert-dismissible" role="alert">
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+  <strong>Exito!</strong>. Usuario Agregado correctamente</div>';
+                  
+                  $this->index_usuario_mensaje($mensaje);
+           }else{
                     
-                }
-                    
-                
+                 $mensaje=' <div class="alert alert-danger alert-dismissible" role="alert">
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+  <strong>Exito!</strong>. Ocurrio un error al agregar al usuario </div>';
+                 $this->index_usuario_mensaje($mensaje);        
+  }
+               
           }else{
-              echo json_encode(array("status"=>"error"));
+              $this->index_usuario();
           }
+              
        }
+    }
+    
+    
+    public function modificar_ajax(){
+         if($this->input->is_ajax_request())
+        {
+         $this->form_validation->set_rules('run_m', 'Run', 'required|numeric|max_length[10]');
+       
+         $this->form_validation->set_rules('nombre_m', 'Nombre', 'required');
+         $this->form_validation->set_rules('paterno_m', 'Paterno', 'required');
+         $this->form_validation->set_rules('materno_m', 'Materno', 'required');
+         $this->form_validation->set_rules('correo_m', 'Correo', 'required|valid_email');
+         $this->form_validation->set_rules('clave_m', 'Clave', 'required|callback_formato_clave');
+         $this->form_validation->set_rules('tipo_m', 'Tipo usuario', 'required|numeric');
+         
+          $this->form_validation->set_message('required', 'El campo {field} es requerido');
+          $this->form_validation->set_message('max_length', 'El campo {field} debe tener un máximo de 10 caracteres');
+          $this->form_validation->set_message('numeric', 'El campo {field} debe ser numerico');
+          $this->form_validation->set_message('email', 'El campo {field} no tiene el formato correcto');
+          $this->form_validation->set_message('formato_dv', 'El campo {field} no tiene el formato correcto');
+          $this->form_validation->set_message('formato_clave', 'El campo {field} no tiene el formato correcto debe ser solo numeros y letras');
+          
+             
+          if(  $this->form_validation->run())
+          {   
+           $run =$this->input->post("run_m");
+          
+           $nombre =$this->input->post("nombre_m");
+           $paterno =$this->input->post("paterno_m");
+           $materno =$this->input->post("materno_m");
+           $correo =$this->input->post("correo_m");
+           $clave =$this->input->post("clave_m");
+           $tipo =$this->input->post("tipo_m");
+            $this->load->model("m_usuario");
+          
+           if( $this->m_usuario->actualizar_usuario($run,$nombre,$paterno,$materno,$correo,$clave,$tipo)){
+            echo json_encode(array("status" => "success"));
+           }else{
+                echo json_encode(array("status" => "error"));
+           }
+        }else{
+              echo json_encode(array("error"=> validation_errors()));
+        }
+        }
+    }
+    
+    public function formulario_registro_usuario(){
+        return   
+       array( 
+       'run'=>  array ( 
+                        'name'           => 'run',
+                        'maxlength'      => '50',
+                        'size'           => '50',
+                        'value'          => set_value('correo'),
+                        'class'          => 'form-control',
+                        'required'       =>'true',
+                        'placeholder'    =>'Ingrese su correo',
+                       'type'           =>'email'),
+           
+        'clave'=>array( 'name'           =>'clave',
+                        'maxlength'      =>'50' ,
+                        'class'          =>'form-control',
+                        'value'          => set_value('clave'),
+                        'required'       =>'true',
+                        'placeholder'    =>'Ingrese su contraseña',
+                        'type'           =>'password')
+           
+        );
     }
     
     public function formato_dv($param) {
@@ -127,7 +192,7 @@ class c_usuario extends CI_Controller {
         return true;
     }
     
-    public function agregar_usuario($run,$dv_run,$nombre,$paterno,$materno,$correo,$clave,$tipo){
+    public function agregar_usuario_($run,$dv_run,$nombre,$paterno,$materno,$correo,$clave,$tipo){
         $this->load->model("m_usuario");
         $flag = $this->m_usuario->agregar_usuario($run,$dv_run,$nombre,$paterno,$materno,$correo,$clave,$tipo); 
         //retorna el true o false dependiendo si se agrego 
