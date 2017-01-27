@@ -110,7 +110,7 @@
                         </li>
                         <li class="divider"></li>
                         <li>
-                           <a href="<?=base_url("index.php/c_crud/cerrar_sesion") ?>"><i class="fa fa-fw fa-power-off"></i> Cerrar sesion</a>
+                           <a href="<?=base_url("index.php/c_crud/cerrar_sesion");?>"><i class="fa fa-fw fa-power-off"></i> Cerrar sesion</a>
                         
                            
                         </li>

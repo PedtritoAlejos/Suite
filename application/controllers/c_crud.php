@@ -144,6 +144,7 @@ class c_crud extends CI_Controller {
            
         'clave'=>array( 'name'           =>'clave',
                         'maxlength'      =>'50' ,
+                        'id'             =>'clave' ,
                         'class'          =>'form-control',
                         'value'          => set_value('clave'),
                         'required'       =>'true',
