@@ -31,7 +31,7 @@
                         <div class="panel-heading">
                             <h3 class="panel-title">Nuevo Usuario</h3>
                         </div>
-                        <?php echo form_open(base_url("index.php/c_usuario/insertar_usuario")); ?>
+                        <?php echo form_open(base_url("index.php/c_usuario/insertar_usuario"),"id='form_insert'"); ?>
                         <div class="panel-body">
                             
                             <!-- -->
@@ -41,14 +41,14 @@
                             
                             <div class="container col-md-6">
                                 <div class="form-group">
-                                    <label>Ingrese el run del usuario</label>
+                                    <label>Ingrese el run del usuario sin puntos</label>
                                     <?php echo form_error('run','<div class="alert alert-danger alert-dismissible"  role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>', '</div>'); ?>
                                     <div class="input-group">
                                         <span class="input-group-addon" id="basic-addon1">Run</span>
-                                        <input type="number"  min="1" maxlength="10" class="form-control" required="true" name="run"  placeholder="Run usuario" aria-describedby="basic-addon1">
+                                        <input type="number"  min="1" maxlength="10" class="form-control" required="true" id="run_v" name="run"  placeholder="Run usuario" aria-describedby="basic-addon1">
                                         <span class="input-group-addon" id="basic-addon1">-</span>
 
-                                        <select name="dv" class="form-control" aria-describedby="basic-addon1">
+                                        <select name="dv" id="dv_v" class="form-control" aria-describedby="basic-addon1">
                                             <option>0</option>
                                             <option>1</option>
                                             <option>2</option>
@@ -61,8 +61,11 @@
                                             <option>9</option>
                                             <option>k</option>
                                         </select>
+                                       <div class="input-group-btn">
+                                           <!-- Buttons --><button type="button" onclick="validaRut()" class="btn btn-danger">Validar run</button>
+  </div>
                                     </div>       
-
+                                     
                                 </div>
                                 <div class="form-group">
                                     <label>Ingrese el nombre del usuario</label>
@@ -118,7 +121,7 @@
                             }
                             ?>
                      
-                        <div class="panel-footer"> <button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-pencil"></span>  Agregar Registro</button> </div>
+                        <div class="panel-footer"> <button type="button" disabled="true" onclick="validacion_run_envio()" id="btnAgregar" class="btn btn-primary"><span class="glyphicon glyphicon-pencil"></span>  Agregar Registro</button> </div>
                             
                     </div>
                             <?php echo form_close(); ?>

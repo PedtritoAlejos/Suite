@@ -197,3 +197,46 @@ $(document).on('click', '.panel-heading span.clickable', function(e){
 		$this.find('i').removeClass('glyphicon-chevron-down').addClass('glyphicon-chevron-up');
 	}
 });
+
+            function validaRut_usuario(b){
+                if (b.match(/^([0-9])+\-([kK0-9])+$/)) {
+                    b = b.split("-");
+                    var a = b[0].split(""), c = 2, d = 0;
+                    for (i = a.length - 1; 0 <= i; i--)
+                        c = 7 < c ? 2 : c, d += parseInt(a[i]) * parseInt(c++);
+                    a = 11 - d % 11;
+                    return(11 == a ? 0 : 10 == a ? "k" : a) == b[1].toLowerCase()
+                }
+                return!1
+            }
+
+        function validaRut(){
+
+                var numerico =$("#run_v").val();
+                var dv_run=$("#dv_v").val();
+                var rut=numerico+"-"+dv_run;
+                    if(validaRut_usuario(rut)){
+                         $("#btnAgregar").removeAttr("disabled");
+                            return true;
+                     //   mensaje_modal(" Rut valido!");  
+                    }else{    $("#btnAgregar").attr("disabled","true");
+                mensaje_modal(" Rut invalido!");     return false;   
+            }
+
+        }
+
+                function validacion_run_envio(){
+                    $("#btnAgregar").click(function (){
+                       if( validaRut()){
+                            $("#form_insert").submit() ;
+                       }
+                    });
+             //function(e){
+//                    e.preventDefault();
+//               if( validaRut()){
+//                alert("rut valido");
+////                    $("#form_insert").submit();
+//               }
+//                 
+       //         });
+                }
