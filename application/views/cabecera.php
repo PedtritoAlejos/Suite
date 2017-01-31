@@ -64,6 +64,15 @@ var base_url ;
                  //llamo al metodo de actualizar usuario
                   modificar_usuario();
                 });
+                
+               $("#form_insert").submit(function (e){
+                    e.preventDefault();
+                 if(validaRut()){
+//                     $("#form_insert").submit();
+                   document.getElementById("form_insert").submit();
+                 }
+                 console.log("no entro a la validación ");
+                });
             });
 </script>
  

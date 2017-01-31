@@ -121,7 +121,7 @@
                             }
                             ?>
                      
-                        <div class="panel-footer"> <button type="button" disabled="true" onclick="validacion_run_envio()" id="btnAgregar" class="btn btn-primary"><span class="glyphicon glyphicon-pencil"></span>  Agregar Registro</button> </div>
+                        <div class="panel-footer"> <button type="submit" disabled="true"  id="btnAgregar" class="btn btn-primary"><span class="glyphicon glyphicon-pencil"></span>  Agregar Registro</button> </div>
                             
                     </div>
                             <?php echo form_close(); ?>

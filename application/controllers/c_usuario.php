@@ -59,16 +59,18 @@ class c_usuario extends CI_Controller {
     public function insertar_usuario(){
        if(isset($_POST ))
        {
-       
-         $this->form_validation->set_rules('run', 'Run', 'required|numeric|max_length[10]');
+         $dv_run =$this->input->post("dv");
+         $this->form_validation->set_rules('run', 'Run', 'required|numeric|max_length[10]|callback_validar_run_usuario['.$dv_run.']');
          $this->form_validation->set_rules('dv', 'Dv', 'required|callback_formato_dv');
          $this->form_validation->set_rules('nombre', 'Nombre', 'required|callback_letras_acentos_formato');
          $this->form_validation->set_rules('paterno', 'Paterno', 'required|callback_letras_acentos_formato');
          $this->form_validation->set_rules('materno', 'Materno', 'required|callback_letras_acentos_formato');
-         $this->form_validation->set_rules('correo', 'Correo', 'required|valid_email');
+         $this->form_validation->set_rules('correo', 'Correo', 'required|valid_email|callback_validar_correo_usuario');
          $this->form_validation->set_rules('clave', 'Clave', 'required|callback_formato_clave');
          $this->form_validation->set_rules('tipo_usuario', 'Tipo usuario', 'required|numeric');
          
+          $this->form_validation->set_message('validar_run_usuario', 'Ya existe un usuario con ese run');
+          $this->form_validation->set_message('validar_correo_usuario', 'Ya existe un usuario con ese correo');
           $this->form_validation->set_message('required', 'El campo {field} es requerido');
           $this->form_validation->set_message('letras_acentos_formato', 'El campo {field} debe contener solo letras');
           $this->form_validation->set_message('max_length', 'El campo {field} debe tener un máximo de 10 caracteres');
@@ -115,13 +117,14 @@ class c_usuario extends CI_Controller {
          $this->form_validation->set_rules('clave_m', 'Clave', 'required|callback_formato_clave');
          $this->form_validation->set_rules('tipo_m', 'Tipo usuario', 'required|numeric');
          
-          $this->form_validation->set_message('required', 'El campo {field} es requerido');
-          $this->form_validation->set_message('letras_acentos_formato', 'El campo {field} debe contener solo letras');
-          $this->form_validation->set_message('max_length', 'El campo {field} debe tener un mÃ¡ximo de 10 caracteres');
-          $this->form_validation->set_message('numeric', 'El campo {field} debe ser numerico');
-          $this->form_validation->set_message('email', 'El campo {field} no tiene el formato correcto');
-          $this->form_validation->set_message('formato_dv', 'El campo {field} no tiene el formato correcto');
-          $this->form_validation->set_message('formato_clave', 'El campo {field} no tiene el formato correcto debe ser solo numeros y letras');
+          
+          $this->form_validation->set_message('required', 'El campo {field} es requerido.');
+          $this->form_validation->set_message('letras_acentos_formato', 'El campo {field} debe contener solo letras.');
+          $this->form_validation->set_message('max_length', 'El campo {field} debe tener un máximo de 10 caracteres.');
+          $this->form_validation->set_message('numeric', 'El campo {field} debe ser numérico.');
+          $this->form_validation->set_message('email', 'El campo {field} no tiene el formato correcto.');
+          $this->form_validation->set_message('formato_dv', 'El campo {field} no tiene el formato correcto.');
+          $this->form_validation->set_message('formato_clave', 'El campo {field} no tiene el formato correcto debe ser solo números y letras.');
           
              
           if(  $this->form_validation->run())
@@ -148,25 +151,34 @@ class c_usuario extends CI_Controller {
     }
     
     public function formulario_registro_usuario(){
-        return   
-       array( 
+        return    array( 
        'run'=>  array ( 
-                        'name'           => 'run',
-                        'maxlength'      => '50',
-                        'size'           => '50',
-                        'value'          => set_value('correo'),
-                        'class'          => 'form-control',
-                        'required'       =>'true',
-                        'placeholder'    =>'Ingrese su correo',
-                       'type'           =>'email'),
+                        'name'            => 'run',
+                        'maxlength'       => '10',
+                        'min'             => '0',
+                        'aria-describedby'=>'basic-addon1',
+                        'value'           => set_value('run'),
+                        'class'           => 'form-control',
+                        'required'        =>'true',
+                        'id'              =>'run_v',
+                        'placeholder'     =>'Ingrese el run sin puntos',
+                        'type'            =>'number'),
            
-        'clave'=>array( 'name'           =>'clave',
-                        'maxlength'      =>'50' ,
+        'nombre'=>array('name'          =>'nombre',
+                        'maxlength'      =>'30' ,
+                        'class'          =>'form-control',
+                        'value'          => set_value('nombre'),
+                        'required'       =>'true',
+                        'placeholder'    =>'Ingrese su nombre',
+                        'type'           =>'text'),
+            
+        'clave'=>array( 'name'          =>'clave',
+                        'maxlength'      =>'150' ,
                         'class'          =>'form-control',
                         'value'          => set_value('clave'),
                         'required'       =>'true',
-                        'placeholder'    =>'Ingrese su contraseÃ±a',
-                        'type'           =>'password')
+                        'placeholder'    =>'Ingrese su clave',
+                        'type'           =>'password')   
            
         );
     }
@@ -218,7 +230,20 @@ class c_usuario extends CI_Controller {
         //retorna el true o false dependiendo si se agrego 
         return $flag;
     }
-        
+    
+    public function validar_run_usuario($run,$dv_run){
+        //valida que no exista el  mismo run en la base de datos
+        //retorna true si no existe 
+     $this->load->model("m_usuario");
+    return $this->m_usuario->validar_run($run,$dv_run);
+    }
+    
+    public function validar_correo_usuario($correo){
+     //valida que no exista el  mismo correo en la base de datos
+        //retorna true si no existe 
+     $this->load->model("m_usuario");
+    return $this->m_usuario->validar_correo($correo);
+    }
     
 }
     
