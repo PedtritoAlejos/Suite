@@ -19,10 +19,11 @@ class c_usuario extends CI_Controller {
     }
     public function index_usuario(){
         $lista =$this->listar_tipos_usuarios();
+       
         $this->load->view("cabecera");
         $this->load->view("v_menu_superior");
         $this->load->view("v_menu_items");
-        $this->load->view("v_usuario", compact("lista","mensaje"));
+        $this->load->view("v_usuario",  compact("lista"));
         $this->load->view("v_footer");
     }
     public function index_usuario_mensaje($mensaje){
@@ -151,7 +152,8 @@ class c_usuario extends CI_Controller {
     }
     
     public function formulario_registro_usuario(){
-        return    array( 
+        return   
+            array( 
        'run'=>  array ( 
                         'name'            => 'run',
                         'maxlength'       => '10',
@@ -161,7 +163,7 @@ class c_usuario extends CI_Controller {
                         'class'           => 'form-control',
                         'required'        =>'true',
                         'id'              =>'run_v',
-                        'placeholder'     =>'Ingrese el run sin puntos',
+                        'placeholder'     =>'Ingrese el run sin puntos...',
                         'type'            =>'number'),
            
         'nombre'=>array('name'          =>'nombre',
@@ -169,7 +171,7 @@ class c_usuario extends CI_Controller {
                         'class'          =>'form-control',
                         'value'          => set_value('nombre'),
                         'required'       =>'true',
-                        'placeholder'    =>'Ingrese su nombre',
+                        'placeholder'    =>'Ingrese su nombre...',
                         'type'           =>'text'),
             
         'clave'=>array( 'name'          =>'clave',
@@ -177,8 +179,33 @@ class c_usuario extends CI_Controller {
                         'class'          =>'form-control',
                         'value'          => set_value('clave'),
                         'required'       =>'true',
-                        'placeholder'    =>'Ingrese su clave',
-                        'type'           =>'password')   
+                        'placeholder'    =>'Ingrese su contraseña...',
+                        'type'           =>'password'),
+            
+        'paterno'=>array('name'          =>'paterno',
+                        'maxlength'      =>'50' ,
+                        'class'          =>'form-control',
+                        'value'          => set_value('paterno'),
+                        'required'       =>'true',
+                        'placeholder'    =>'Ingrese su apellido paterno...',
+                        'type'           =>'text'),
+        
+        'materno'=>array('name'          =>'materno',
+                        'maxlength'      =>'50' ,
+                        'class'          =>'form-control',
+                        'value'          => set_value('materno'),
+                        'required'       =>'true',
+                        'placeholder'    =>'Ingrese su apellido materno...',
+                        'type'           =>'text'),
+            
+        'correo'=>array('name'          =>'correo',
+                        'maxlength'      =>'50' ,
+                        'class'          =>'form-control',
+                        'value'          => set_value('correo'),
+                        'required'       =>'true',
+                        'placeholder'    =>'Ingrese su email...',
+                        'type'           =>'email') 
+                
            
         );
     }

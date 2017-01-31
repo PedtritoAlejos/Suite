@@ -37,7 +37,64 @@
                             <!-- -->
                        <!-- -->
                             
-                            
+   <?php 
+   $run = array( 'name'   => 'run',
+                        'maxlength'       => '10',
+                        'min'             => '0',
+                        'aria-describedby'=>'basic-addon1',
+                        'value'           => set_value('run'),
+                        'class'           => 'form-control',
+                        'required'        =>'true',
+                        'id'              =>'run_v',
+                        'placeholder'     =>'Ingrese el run sin puntos...',
+                        'type'            =>'number');
+ 
+           
+        $nombre = array('name'          =>'nombre',
+                        'maxlength'      =>'30' ,
+                        'class'          =>'form-control',
+                        'value'          => set_value('nombre'),
+                        'required'       =>'true',
+                        'placeholder'    =>'Ingrese su nombre...',
+                        'type'           =>'text');   
+            
+        $clave=array( 'name'          =>'clave',
+                        'maxlength'      =>'150' ,
+                        'class'          =>'form-control',
+                        'value'          => set_value('clave'),
+                        'required'       =>'true',
+                        'placeholder'    =>'Ingrese su contraseña...',
+                        'type'           =>'password');
+            
+        $paterno=array('name'          =>'paterno',
+                        'maxlength'      =>'50' ,
+                        'class'          =>'form-control',
+                        'value'          => set_value('paterno'),
+                        'required'       =>'true',
+                        'placeholder'    =>'Ingrese su apellido paterno...',
+                        'type'           =>'text');
+        
+        $materno=array('name'          =>'materno',
+                        'maxlength'      =>'50' ,
+                        'class'          =>'form-control',
+                        'value'          => set_value('materno'),
+                        'required'       =>'true',
+                        'placeholder'    =>'Ingrese su apellido materno...',
+                        'type'           =>'text');
+            
+        $correo=array('name'          =>'correo',
+                        'maxlength'      =>'50' ,
+                        'class'          =>'form-control',
+                        'value'          => set_value('correo'),
+                        'required'       =>'true',
+                        'placeholder'    =>'Ingrese su email...',
+                        'type'           =>'email') ;
+                
+           
+        
+
+?>
+                         
                             
                             <div class="container col-md-6">
                                 <div class="form-group">
@@ -45,7 +102,12 @@
                                     <?php echo form_error('run','<div class="alert alert-danger alert-dismissible"  role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>', '</div>'); ?>
                                     <div class="input-group">
                                         <span class="input-group-addon" id="basic-addon1">Run</span>
-                                        <input type="number"  min="1" maxlength="10" class="form-control" required="true" id="run_v" name="run"  placeholder="Run usuario" aria-describedby="basic-addon1">
+                                        
+<!--                                        <input type="number"  min="1" maxlength="10" class="form-control"
+                                               required="true" id="run_v" name="run"  placeholder="Run usuario" 
+                                               aria-describedby="basic-addon1">-->
+                                           <?php echo form_input($run); ?>
+                                      
                                         <span class="input-group-addon" id="basic-addon1">-</span>
 
                                         <select name="dv" id="dv_v" class="form-control" aria-describedby="basic-addon1">
@@ -69,15 +131,19 @@
                                 </div>
                                 <div class="form-group">
                                     <label>Ingrese el nombre del usuario</label>
-                                    <input required="true" name="nombre" class="form-control">
+                                    
+<!--                                    <input required="true" name="nombre" class="form-control">-->
+                                       <?php echo form_input($nombre); ?>
+                                    
                                      <?php echo form_error('nombre','<div class="alert alert-danger alert-dismissible"  role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>', '</div>'); ?>
                                 </div>
                                 <div class="form-group">
                                     <label>Ingrese la clave del usuario</label>
-                                    <input required="true" type="password"  name="clave" class="form-control">
+                                    
+<!--                                    <input required="true" type="password"  name="clave" class="form-control">-->
+                                       <?php echo form_input($clave); ?>
                                      <?php echo form_error('clave','<div class="alert alert-danger alert-dismissible"  role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>', '</div>'); ?>
                                 </div>
-
 
 
 
@@ -86,26 +152,31 @@
 
                                 <div class="form-group">
                                     <label>Ingrese el apellido paterno</label>
-                                    <input required="true" name="paterno" class="form-control">
+<!--                                    <input required="true" name="paterno" class="form-control">-->
+                                           <?php echo form_input($paterno); ?>
                                      <?php echo form_error('paterno','<div class="alert alert-danger alert-dismissible"  role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>', '</div>'); ?>
                                 </div>
                                 <div class="form-group">
                                     <label>Ingrese el apellido materno</label>
-                                    <input required="true" name="materno" class="form-control">
+<!--                                    <input required="true" name="materno" class="form-control">-->
+                                       <?php echo form_input($materno); ?>
                                      <?php echo form_error('materno','<div class="alert alert-danger alert-dismissible"  role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>', '</div>'); ?>
                                 </div>
                                 <div class="form-group">
                                     <label>Ingrese el correo del usuario</label>
-                                    <input required="true" type="email" name="correo" class="form-control">
+<!--                                    <input required="true" type="email" name="correo" class="form-control">-->
+                                       <?php echo form_input($correo); ?>
+                                    
                                      <?php echo form_error('correo','<div class="alert alert-danger alert-dismissible"  role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>', '</div>'); ?>
                             
                                 </div>
+                             
                                 <div class="form-group">
                                     <label>Seleccione un tipo de usuario</label>
                                     <select class="form-control" required="true" name="tipo_usuario" >
                                         <option value="" required="true">Seleccione</option>
                                         <?php
-                                        foreach ($lista as $value) {
+                                        foreach ($lista  as $value) {
                                             echo "<option value='" . $value->id_tipo_usuario . "'>" . $value->nombre . "</option>";
                                         }
                                         ?>

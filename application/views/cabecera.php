@@ -71,7 +71,7 @@ var base_url ;
 //                     $("#form_insert").submit();
                    document.getElementById("form_insert").submit();
                  }
-                 console.log("no entro a la validación ");
+               
                 });
             });
 </script>

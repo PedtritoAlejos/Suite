@@ -225,11 +225,4 @@ $(document).on('click', '.panel-heading span.clickable', function(e){
 
         }
 
-                function validacion_run_envio(){
-                    $("#form_insert").submit(function (e){
-                    e.preventDefault();
-                   alert("el formulario hizo submit");
-                });
-                   
-                   
-                }
+             
