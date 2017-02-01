@@ -64,6 +64,11 @@ var base_url ;
                  //llamo al metodo de actualizar usuario
                   modificar_usuario();
                 });
+                $("#form_update_com").submit(function(e){
+                    e.preventDefault();
+                 //llamo al metodo de actualizar usuario
+                  modificar_componente_ajax();
+                });
                 
                $("#form_insert").submit(function (e){
                     e.preventDefault();

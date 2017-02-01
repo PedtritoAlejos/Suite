@@ -31,6 +31,7 @@
                         <div class="panel-heading">
                             <h3 class="panel-title">Nuevo Usuario</h3>
                         </div>
+                       
                         <?php echo form_open(base_url("index.php/c_usuario/insertar_usuario"),"id='form_insert'"); ?>
                         <div class="panel-body">
                             
@@ -90,8 +91,6 @@
                         'placeholder'    =>'Ingrese su email...',
                         'type'           =>'email') ;
                 
-           
-        
 
 ?>
                          

@@ -19,11 +19,11 @@ class c_usuario extends CI_Controller {
     }
     public function index_usuario(){
         $lista =$this->listar_tipos_usuarios();
-       
+      
         $this->load->view("cabecera");
         $this->load->view("v_menu_superior");
         $this->load->view("v_menu_items");
-        $this->load->view("v_usuario",  compact("lista"));
+        $this->load->view("v_usuario", compact("lista"));
         $this->load->view("v_footer");
     }
     public function index_usuario_mensaje($mensaje){
@@ -58,7 +58,7 @@ class c_usuario extends CI_Controller {
     
     }
     public function insertar_usuario(){
-       if(isset($_POST ))
+       if(isset($_POST["dv"] ))
        {
          $dv_run =$this->input->post("dv");
          $this->form_validation->set_rules('run', 'Run', 'required|numeric|max_length[10]|callback_validar_run_usuario['.$dv_run.']');
