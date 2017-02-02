@@ -41,7 +41,7 @@ class m_cliente extends CI_Model{
     
     public function get_cli()
 	{
-
+                 $this->db->where('activo',1);
 		$query = $this->db->get('cliente');
 		if($query->num_rows() > 0)
 		{
