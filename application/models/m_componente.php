@@ -30,7 +30,7 @@ class m_componente extends CI_Model {
         $this->db->select('componente.id_tipo_componente,componente.id_componente ,componente.nombre_componente,componente.descripcion,tipo_componente.nombre');
         $this->db->from('componente');
         $this->db->join('tipo_componente', 'tipo_componente.id_tipo_componente = componente.id_tipo_componente');
-        $this->db->where('activo',self::STATUS_ACTIVO);
+        $this->db->where('componente.activo',self::STATUS_ACTIVO);
 
         return $this->db->get()->result();
     }

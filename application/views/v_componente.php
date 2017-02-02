@@ -128,7 +128,7 @@
             <div class="panel-heading">
                 <div class="row">
                     <div class="col col-xs-6">
-                        <h1 class="panel-title text-right">Usuarios del sistema</h1>
+                        <h1 class="panel-title text-right">Componentes del sistema</h1>
                     </div>
                     
 

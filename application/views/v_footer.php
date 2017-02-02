@@ -8,6 +8,8 @@
     <script src="<?php echo base_url("plantilla/datatables/media/js/jquery.dataTables.min.js"); ?>"></script>
     <script src="<?php echo base_url("plantilla/js_functions/js_usuarios.js"); ?>"></script>
     <script src="<?php echo base_url("plantilla/js_functions/js_componentes.js"); ?>"></script>
+    <script src="<?php echo base_url("plantilla/js_functions/js_tipo_componente.js"); ?>"></script>
+    
     <script src="<?php echo base_url("plantilla/js_functions/js_validaciones.js"); ?>"></script>
 <!--    <script src="https://code.jquery.com/jquery-1.12.4.js"></script> se comentoesto -->
 <!--    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>  es nuevo-->

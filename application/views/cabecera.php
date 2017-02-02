@@ -66,8 +66,13 @@ var base_url ;
                 });
                 $("#form_update_com").submit(function(e){
                     e.preventDefault();
-                 //llamo al metodo de actualizar usuario
+                 //llamo al metodo de actualizar componente
                   modificar_componente_ajax();
+                });
+                $("#form_updatetipocomponente").submit(function(e){
+                    e.preventDefault();
+                 //llamo al metodo de actualizar tipo componente
+                  modificar_tipo_componente_ajax();
                 });
                 
                $("#form_insert").submit(function (e){

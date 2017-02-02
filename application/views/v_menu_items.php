@@ -16,7 +16,7 @@
                                 <a href="<?=base_url("index.php/c_componente/index") ?>"><i class="glyphicon glyphicon-list-alt"></i> Componente</a>
                             </li>
                             <li>
-                                <a href="<?=base_url("index.php/c_tcomponente/index") ?>"><i class="glyphicon glyphicon-list-alt"></i> Tipo componente</a>
+                                <a href="<?=base_url("index.php/c_tipo_componente/index") ?>"><i class="glyphicon glyphicon-list-alt"></i> Tipo componente</a>
                             </li>
                         </ul>
                     </li>
