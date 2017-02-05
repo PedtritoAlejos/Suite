@@ -56,7 +56,7 @@ class c_tipo_componente extends CI_Controller {
            $descripcion =$this->input->post("descripcion");
          
            
-           $this->load->model("m_componente");
+           $this->load->model("m_tipo_componente");
           if( $this->m_tipo_componente->insertar_tipo_componente($nombre,$descripcion)){
               $mensaje=' <div class="alert alert-success alert-dismissible" role="alert">
   <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
