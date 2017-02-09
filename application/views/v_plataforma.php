@@ -47,7 +47,7 @@
                         'class'          =>'form-control',
                         'value'          => set_value('nombre'),
                         'required'       =>'true',
-                        'placeholder'    =>'Ingrese su nombre...',
+                        'placeholder'    =>'Ingrese ...',
                         'type'           =>'text');   
             
         
@@ -115,6 +115,11 @@
                                         
                                         <select required="true" class="form-control">
                                             <option value="">Seleccione</option>
+                                             <?php
+                                        foreach ($lista  as $value) {
+                                            echo "<option value='" . $value->id_cliente. "'>" . $value->nombre . "</option>";
+                                        }
+                                        ?>
                                         </select>
                                         
                                       
@@ -200,7 +205,7 @@
                                     <label>Mencione el servicio</label>
                                     <?php echo form_error('nombre','<div class="alert alert-danger alert-dismissible"  role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>', '</div>'); ?>
                                     <div class="input-group">
-                                        <span class="input-group-addon" id="basic-addon1">Nombre</span>
+                                        <span class="input-group-addon" id="basic-addon1">Servicio</span>
                                         
 
                                            <?php echo form_input($nombre); ?>
@@ -212,7 +217,7 @@
                                     <label>Mencione el propósito</label>
                                     <?php echo form_error('nombre','<div class="alert alert-danger alert-dismissible"  role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>', '</div>'); ?>
                                     <div class="input-group">
-                                        <span class="input-group-addon" id="basic-addon1">Nombre</span>
+                                        <span class="input-group-addon" id="basic-addon1">Propósito</span>
                                         
 
                                            <?php echo form_input($nombre); ?>
@@ -224,7 +229,7 @@
                                     <label>Ingrese una breve descripción de propósito</label>
                                     <?php echo form_error('nombre','<div class="alert alert-danger alert-dismissible"  role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>', '</div>'); ?>
                                     <div class="input-group">
-                                        <span class="input-group-addon" id="basic-addon1">Nombre</span>
+                                        <span class="input-group-addon" id="basic-addon1">Descripción</span>
                                         
 
                                            <?php echo form_input($nombre); ?>
@@ -233,6 +238,7 @@
                                      
                                 </div>
                                 <div class="form-group">
+                                     <?php echo $this->session->userdata('id_usuario')?>
                                     <label>Seleccione el tipo servicio</label>
                                     <?php echo form_error('nombre','<div class="alert alert-danger alert-dismissible"  role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>', '</div>'); ?>
                                     <div class="input-group">
@@ -241,7 +247,11 @@
 
                                         <select class="form-control">
                                             <option value="">Seleccione</option>
-                                            
+                                             <?php
+                                        foreach ($lista_ts  as $value) {
+                                            echo "<option value='" . $value->id_tipo_servicio. "'>" . $value->nombre . "</option>";
+                                        }
+                                        ?>
                                         </select>
                                       
                                          </div>       
@@ -265,21 +275,7 @@
 
                             </div>
                            
-                           
-<!--                            <div class="col-md-6">
-
-                                <div class="form-group">
-                                    <label>Ingrese una descripción del tipo componente</label>
-
-                          
-                                    
-                                     <?php //echo form_error('descripcion','<div class="alert alert-danger alert-dismissible"  role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>', '</div>'); ?>
-                                </div>
-                                
-                                
-                             
-                               
-                            </div>-->
+     
                           </div>
                        <?php 
                             if(isset($mensaje)){
@@ -290,11 +286,12 @@
                             ?>
                         
                      
-                        <div class="panel-footer"> <button type="submit"  id="btnAgregar_componente" class="btn btn-primary"><span class="glyphicon glyphicon-pencil"></span>  Agregar Componente</button> </div>
+                        <div class="panel-footer"> <button type="submit"  id="btnAgregar_componente" class="btn btn-primary"><span class="glyphicon glyphicon-pencil"></span>  Agregar Plataforma</button> </div>
                             
                     </div>
                            
                 </div>  <!-- -->
+                <?php echo form_close() ?>
             </div>
         </div>                            
 
@@ -316,13 +313,19 @@
                 <div class="panel-body">
                     <div class="col-md-12">
 
-                        <table id="tbl_tipocomponente" class="table  table-bordered table-hover" cellspacing="0">
+                        <table id="tbl_plataforma" class="table  table-bordered table-hover" cellspacing="0">
                             <thead >
                                 <tr>
                                     <th>Acción</th>
-                                    <th>IdTipo componente</th>
-                                    <th>Nombre componente</th>
-                                    <th>Descripcion</th>
+                                    <th>Código</th>
+                                    <th>Nombre</th>
+                                    <th>Cpu</th>
+                                    <th>Ram</th>
+                                    <th>Ip</th>
+                                    <th>S.O</th>
+                                    <th>Propósito</th>
+                                    <th>Servicio</th>
+                                    <th>Cliente</th>
                                  
                                   
                                    
@@ -395,9 +398,9 @@
     </div>
 
 
-    <!--  ventana modal para modificar los datos del componente--->
+    <!--  ventana modal para modificar los datos de la plataforma--->
     <form id="form_updatetipocomponente">
-          <div class="modal fade" id="modal_formulario_tc" tabindex="-1" role="dialog" 
+          <div class="modal fade" id="modal_formulario_pla" tabindex="-1" role="dialog" 
      aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         
@@ -411,36 +414,71 @@
                 </button>
                 <h4 class="modal-title" id="myModalLabel">
                     <span class="glyphicon glyphicon-folder-open"> </span> &nbsp;
-                    Actualizar tipo componente
+                    Actualizar plataforma
                 </h4>
             </div>
             
             <!-- Modal Body -->
             <div class="modal-body">
                 <div id="msj"></div>
-                <div class="input-group">
-                     <span class="input-group-addon"  id="basic-addon1">Código tipo componente</span>
-                     <input type="number" class="form-control" disabled="true" id="tpc"  maxlength="10" required="true"  aria-describedby="basic-addon1">
-                 </div>       
-           
-              <br>
-               <div class="input-group">
-               <span class="input-group-addon" id="basic-addon2">Nombre tipo componente</span>    
-                <input type="text" class="form-control" id="nombre_tc"  required="true" placeholder="Ingrese.." aria-describedby="basic-addon2">
-               </div>
-              <br>
-               <div class="input-group">
-                  <span class="input-group-addon" id="basic-addon2">Descripción tipo componente</span>    
-               <textarea  id="desc_tp" class="form-control" required="true"  placeholder="Ingrese.." aria-describedby="basic-addon2"></textarea>
+                
+                <div class="form-group ">
+                    <div class="input-group">
+                         <span class="input-group-addon"  id="basic-addon1">Código</span>
+                         <input type="number" class="form-control" disabled="true" id="cod_pla"  maxlength="10" required="true"  aria-describedby="basic-addon1">
+                   
+                         <span class="input-group-addon" id="basic-addon2">Nombre</span>    
+                         <input type="text" class="form-control" id="nombre_pla"  required="true" placeholder="Ingrese.." aria-describedby="basic-addon2">
+                   
+                    
+                    </div>       
+                </div>       
+            
                  
+                <div class="form-group ">
+                   <div class="input-group">
+                      <span class="input-group-addon" id="basic-addon2">CPU</span>    
+                      <input type="number"  id="cpu_pla" class="form-control" required="true"  placeholder="Ingrese.." aria-describedby="basic-addon2"/>
+                       <span class="input-group-addon" id="basic-addon2">Ram</span>    
+                  <input type="number" min="0" class="form-control" id="ram_pla"  required="true" placeholder="Ingrese.." aria-describedby="basic-addon2">
+                 
+                   </div>
+                   </div>
+            
+           
+            
+                
+                  <div class="form-group "> 
+                        <div class="input-group ">
+                           <span class="input-group-addon" id="basic-addon2">IP</span>    
+                           <input type="text"  class="form-control" id="ip_pla"  required="true" placeholder="Ingrese.." aria-describedby="basic-addon2">
+                           <span class="input-group-addon" id="basic-addon2">Propósito</span>    
+                           <input type="text"  class="form-control" id="pro_pla"  required="true" placeholder="Ingrese.." aria-describedby="basic-addon2">
+
+                        </div>
+             
                </div>
-              <br>
               
+               
+             
+          
+                <div class="form-group  ">
+                    <div class="input-group ">
+                       <span class="input-group-addon" id="basic-addon2">Servicio</span>    
+                       <input type="text"  class="form-control" id="ser_pla"  required="true" placeholder="Ingrese.." aria-describedby="basic-addon2">
+                       <span class="input-group-addon" id="basic-addon2">Cliente</span>    
+                      <input type="text"  class="form-control" id="cli_pla"  required="true" placeholder="Ingrese.." aria-describedby="basic-addon2">
+                 
+                    
+                    </div>
+                  </div>
+            
+             
                   
             </div>
             
             <!-- Modal Footer -->
-            <div class="modal-footer">
+           <div class="modal-footer">
                 <button type="button" class="btn btn-default"
                         data-dismiss="modal">
                     <span class="glyphicon glyphicon-remove-sign"></span>  Cerrar
@@ -451,8 +489,10 @@
               
             
             </div>
-            
+           
+       
         </div>
+        
     </div>
 </div>
     <!-- -->

@@ -17,14 +17,26 @@ class c_plataforma extends CI_Controller{
          parent::_construct();
     }
     public function index(){
-         $this->load->view("cabecera");
+        $lista=$this->listar_cliente();
+        $lista_ts=$this->mostrar_ts();
+        $this->load->view("cabecera");
         $this->load->view("v_menu_superior");
         $this->load->view("v_menu_items");
-        $this->load->view("v_plataforma");
+        $this->load->view("v_plataforma", compact("lista","lista_ts"));
         $this->load->view("v_footer");
     }
-    
-    public function mostrar_tipo(){
-        
+   
+    public function mostrar_ts(){
+        $this->load->model("m_plataforma");
+       return $this->m_plataforma->listar_tp_servicio(); 
+    }
+    public function lis_com(){
+        $this->load->model("m_plataforma");
+     echo json_encode( $this->m_plataforma->listar_plataforma());
+    }
+
+    public function listar_cliente(){
+         $this->load->model("m_plataforma");
+        return $this->m_plataforma->listar_cliente(); 
     }
 }
