@@ -21,7 +21,7 @@
                         </ul>
                     </li>
                      <li>
-                        <a href="tables.html"><i class="fa fa-fw fa-table"></i> Administrar servicios</a>
+                        <a href="<?=base_url("index.php/c_plataforma/index") ?>"><i class="fa fa-fw fa-table"></i> Administrar plataforma</a>
                     </li>
                      <li>
                         <a href="bootstrap-elements.html"><i class="fa fa-fw fa-desktop"></i> Administrar muestras</a>

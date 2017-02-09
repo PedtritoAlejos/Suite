@@ -31,4 +31,7 @@ class m_plataforma extends CI_Model {
     public function eliminar_plataforma (){
         
     }
+    public function listar (){
+        
+    }
 }
