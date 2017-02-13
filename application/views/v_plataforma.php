@@ -32,7 +32,7 @@
                             <h3 class="panel-title">Información servidor</h3>
                         </div>
                        
-                        <?php echo form_open(base_url("index.php/c_plataforma/insertar_plataforma")); ?>
+                        <?php echo form_open(base_url("index.php/c_plataforma/formulario_plataforma")); ?>
                         <div class="panel-body">
                             
                             <!-- -->
@@ -42,17 +42,80 @@
 
  
            
-        $nombre = array('name'          =>'nombre',
+       $nombre_servidor =
+                 array('name'           =>'nombre_servidor',
                         'maxlength'      =>'30' ,
                         'class'          =>'form-control',
-                        'value'          => set_value('nombre'),
+                        'value'          => set_value('nombre_servidor'),
+                        'required'       =>'true',
+                        'placeholder'    =>'Ingrese ...',
+                        'type'           =>'text');  
+      
+       
+        $ram =    array('name'           =>'ram',
+                        'maxlength'      =>'30' ,
+                        'min'            =>'1',    
+                        'class'          =>'form-control',
+                        'value'          => set_value('ram'),
+                        'required'       =>'true',
+                        'placeholder'    =>'Ingrese ...',
+                        'type'           =>'number');   
+        $cpu =    array('name'           =>'cpu',
+                        'maxlength'      =>'30' ,
+                        'min'            =>'1',    
+                        'class'          =>'form-control',
+                        'value'          => set_value('cpu'),
+                        'required'       =>'true',
+                        'placeholder'    =>'Ingrese ...',
+                        'type'           =>'number');   
+        
+        $so =     array('name'           =>'so',
+                        'maxlength'      =>'55' ,
+                        'minlength'      =>'1',    
+                        'class'          =>'form-control',
+                        'value'          => set_value('so'),
+                        'required'       =>'true',
+                        'placeholder'    =>'Ingrese ...',
+                        'type'           =>'text');   
+        
+        $ip =     array('name'           =>'ip',
+                        'maxlength'      =>'15' ,
+                        'minlength'      =>'1',    
+                        'class'          =>'form-control',
+                        'value'          => set_value('ip'),
+                        'required'       =>'true',
+                        'placeholder'    =>'Ingrese ...',
+                        'type'           =>'text'); 
+        /*-- info del servicio*/
+        $servicio =     
+                  array('name'           =>'servicio',
+                        'maxlength'      =>'35' ,
+                        'minlength'      =>'1',    
+                        'class'          =>'form-control',
+                        'value'          => set_value('servicio'),
+                        'required'       =>'true',
+                        'placeholder'    =>'Ingrese ...',
+                        'type'           =>'text');   
+        $proposito =     
+                  array('name'           =>'proposito',
+                        'maxlength'      =>'25' ,
+                        'minlength'      =>'1',    
+                        'class'          =>'form-control',
+                        'value'          => set_value('proposito'),
                         'required'       =>'true',
                         'placeholder'    =>'Ingrese ...',
                         'type'           =>'text');   
             
         
+       $ds_po    =array('name'          =>'$ds_po',
+                        'maxlength'      =>'100' ,
+                        'class'          =>'form-control',
+                        'value'          => set_value('ds_po'),
+                        'required'       =>'true',
+                        'placeholder'    =>'Ingrese una descripción breve...'
+                        ) ;
      $descripcion=array('name'          =>'descripcion',
-                        'maxlength'      =>'99' ,
+                        'maxlength'      =>'100' ,
                         'class'          =>'form-control',
                         'value'          => set_value('descripcion'),
                         'required'       =>'true',
@@ -66,12 +129,12 @@
                             <div class="container col-md-6">
                                 <div class="form-group">
                                     <label>Ingrese el nombre del servidor</label>
-                                    <?php echo form_error('nombre','<div class="alert alert-danger alert-dismissible"  role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>', '</div>'); ?>
+                                    <?php echo form_error('nombre_servidor','<div class="alert alert-danger alert-dismissible"  role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>', '</div>'); ?>
                                     <div class="input-group">
                                         <span class="input-group-addon" id="basic-addon1">Nombre</span>
                                         
 
-                                           <?php echo form_input($nombre); ?>
+                                           <?php echo form_input($nombre_servidor); ?>
                                       
                                          </div>       
                                      
@@ -82,12 +145,12 @@
                             <div class="container col-md-6">
                                 <div class="form-group">
                                     <label>Ingrese la cantidad de cpu</label>
-                                    <?php echo form_error('nombre','<div class="alert alert-danger alert-dismissible"  role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>', '</div>'); ?>
+                                    <?php echo form_error('cpu','<div class="alert alert-danger alert-dismissible"  role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>', '</div>'); ?>
                                     <div class="input-group">
                                         <span class="input-group-addon" id="basic-addon1">CPU</span>
                                         
 
-                                           <?php echo form_input($nombre); ?>
+                                           <?php echo form_input($cpu); ?>
                                       
                                          </div>       
                                      
@@ -98,12 +161,25 @@
                             <div class="container col-md-6">
                                 <div class="form-group">
                                     <label>Ingrese la cantidad de Ram(GB)</label>
-                                    <?php echo form_error('nombre','<div class="alert alert-danger alert-dismissible"  role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>', '</div>'); ?>
+                                    <?php echo form_error('ram','<div class="alert alert-danger alert-dismissible"  role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>', '</div>'); ?>
                                     <div class="input-group">
                                         <span class="input-group-addon" id="basic-addon1">RAM</span>
                                         
 
-                                           <?php echo form_input($nombre); ?>
+                                           <?php echo form_input($ram); ?>
+                                      
+                                         </div>       
+                                     
+                                </div>
+                                <div class="form-group">
+                                    <label>Run usuario</label>
+                                    <?php echo form_error('run_usuario','<div class="alert alert-danger alert-dismissible"  role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>', '</div>'); ?>
+                                    <div class="input-group">
+                                        <span class="input-group-addon" id="basic-addon1">Run</span>
+                                        
+                                        <input type="hidden" name="run_usuario"   class="form-control" value =" <?php echo $this->session->userdata('id_usuario')?>" />
+                                      
+                                        <input type="text"  disabled="true"  class="form-control" value =" <?php echo $this->session->userdata('id_usuario')?>" />
                                       
                                          </div>       
                                      
@@ -113,7 +189,7 @@
                                                 <div class="input-group">
                                         <span class="input-group-addon" id="basic-addon1">Cliente</span>
                                         
-                                        <select required="true" class="form-control">
+                                        <select required="true" name="id_cliente" class="form-control">
                                             <option value="">Seleccione</option>
                                              <?php
                                         foreach ($lista  as $value) {
@@ -132,12 +208,12 @@
                             <div class="container col-md-6">
                                 <div class="form-group">
                                     <label>Ingrese el nombre del sistema operativo</label>
-                                    <?php echo form_error('nombre','<div class="alert alert-danger alert-dismissible"  role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>', '</div>'); ?>
+                                    <?php echo form_error('so','<div class="alert alert-danger alert-dismissible"  role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>', '</div>'); ?>
                                     <div class="input-group">
                                         <span class="input-group-addon" id="basic-addon1">Sistema Operativo</span>
                                         
 
-                                           <?php echo form_input($nombre); ?>
+                                           <?php echo form_input($so); ?>
                                       
                                          </div>       
                                      
@@ -145,12 +221,12 @@
                                
                                 <div class="form-group">
                                     <label>Ingrese la ip del servidor </label>
-                                    <?php echo form_error('nombre','<div class="alert alert-danger alert-dismissible"  role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>', '</div>'); ?>
+                                    <?php echo form_error('ip','<div class="alert alert-danger alert-dismissible"  role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>', '</div>'); ?>
                                     <div class="input-group">
                                         <span class="input-group-addon" id="basic-addon1">IP</span>
                                         
 
-                                           <?php echo form_input($nombre); ?>
+                                           <?php echo form_input($ip); ?>
                                       
                                          </div>       
                                      
@@ -158,28 +234,9 @@
                                
 
                             </div>
-<!--                            <div class="col-md-6">
-
-                                <div class="form-group">
-                                    <label>Ingrese una descripción del tipo componente</label>
-
-                                   <?php echo form_textarea($descripcion); ?>
-                                    
-                                     <?php //echo form_error('descripcion','<div class="alert alert-danger alert-dismissible"  role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>', '</div>'); ?>
-                                </div>
-                                
-                                
-                             
-                               
-                            </div>-->
+               
                           </div>
-                       <?php 
-                            if(isset($mensaje)){
-                               
-                                echo $mensaje;
-                               
-                            }
-                            ?>
+                      
                         
                      
                       
@@ -203,49 +260,49 @@
                             <div class="container col-md-6">
                                 <div class="form-group">
                                     <label>Mencione el servicio</label>
-                                    <?php echo form_error('nombre','<div class="alert alert-danger alert-dismissible"  role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>', '</div>'); ?>
+                                    <?php echo form_error('servicio','<div class="alert alert-danger alert-dismissible"  role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>', '</div>'); ?>
                                     <div class="input-group">
                                         <span class="input-group-addon" id="basic-addon1">Servicio</span>
                                         
 
-                                           <?php echo form_input($nombre); ?>
+                                           <?php echo form_input($servicio); ?>
                                       
                                          </div>       
                                      
                                 </div>
                                 <div class="form-group">
                                     <label>Mencione el propósito</label>
-                                    <?php echo form_error('nombre','<div class="alert alert-danger alert-dismissible"  role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>', '</div>'); ?>
+                                    <?php echo form_error('proposito','<div class="alert alert-danger alert-dismissible"  role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>', '</div>'); ?>
                                     <div class="input-group">
                                         <span class="input-group-addon" id="basic-addon1">Propósito</span>
                                         
 
-                                           <?php echo form_input($nombre); ?>
+                                           <?php echo form_input($proposito); ?>
                                       
                                          </div>       
                                      
                                 </div>
                                 <div class="form-group">
                                     <label>Ingrese una breve descripción de propósito</label>
-                                    <?php echo form_error('nombre','<div class="alert alert-danger alert-dismissible"  role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>', '</div>'); ?>
+                                    <?php echo form_error('$ds_po','<div class="alert alert-danger alert-dismissible"  role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>', '</div>'); ?>
                                     <div class="input-group">
                                         <span class="input-group-addon" id="basic-addon1">Descripción</span>
                                         
 
-                                           <?php echo form_input($nombre); ?>
+                                           <?php echo form_input($ds_po); ?>
                                       
                                          </div>       
                                      
                                 </div>
                                 <div class="form-group">
-                                     <?php echo $this->session->userdata('id_usuario')?>
+                                   
                                     <label>Seleccione el tipo servicio</label>
                                     <?php echo form_error('nombre','<div class="alert alert-danger alert-dismissible"  role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>', '</div>'); ?>
                                     <div class="input-group">
                                         <span class="input-group-addon" id="basic-addon1">Tipo servicio</span>
                                         
 
-                                        <select class="form-control">
+                                        <select class="form-control" name="tipo_servicio">
                                             <option value="">Seleccione</option>
                                              <?php
                                         foreach ($lista_ts  as $value) {
@@ -262,7 +319,7 @@
                             <div class="container col-md-6">
                                 <div class="form-group">
                                     <label>Ingrese una breve descripción del servicio</label>
-                                    <?php echo form_error('nombre','<div class="alert alert-danger alert-dismissible"  role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>', '</div>'); ?>
+                                    <?php echo form_error('descripcion','<div class="alert alert-danger alert-dismissible"  role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>', '</div>'); ?>
                                    
                                         
 
@@ -367,7 +424,7 @@
     <div class="row">
 
 
-        <div id="modaldelete_tipocomponente" class="modal fade" role="dialog">
+        <div id="modaldelete_plataforma" class="modal fade" role="dialog">
             <div class="modal-dialog">
 
                 <!-- Modal content-->
@@ -380,9 +437,9 @@
                         <p> </p>
                     </div>
                     <div class="modal-footer ">
-                        <input type="hidden" id="id_tc">
+                        <input type="hidden" id="id_plataforma">
 
-                        <button type="button" class="btn btn-danger grupo1" onclick="eliminar_tipocomponente_ajax()"><span class="glyphicon glyphicon-trash"></span> Eliminar</button>
+                        <button type="button" class="btn btn-danger grupo1" onclick="eliminar_plataforma_ajax()"><span class="glyphicon glyphicon-trash"></span> Eliminar</button>
                         <button type="button" class="btn btn-default grupo2" data-dismiss="modal"><span class="glyphicon glyphicon-remove-circle"></span> Cerrar</button>
                         <button type="button" class="btn btn-default grupo1"  data-dismiss="modal"><span class="glyphicon glyphicon-remove"> </span> Cancelar</button>
                     </div>
@@ -399,7 +456,7 @@
 
 
     <!--  ventana modal para modificar los datos de la plataforma--->
-    <form id="form_updatetipocomponente">
+    <form id="form_updateplataforma">
           <div class="modal fade" id="modal_formulario_pla" tabindex="-1" role="dialog" 
      aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
@@ -453,7 +510,7 @@
                            <span class="input-group-addon" id="basic-addon2">IP</span>    
                            <input type="text"  class="form-control" id="ip_pla"  required="true" placeholder="Ingrese.." aria-describedby="basic-addon2">
                            <span class="input-group-addon" id="basic-addon2">Propósito</span>    
-                           <input type="text"  class="form-control" id="pro_pla"  required="true" placeholder="Ingrese.." aria-describedby="basic-addon2">
+                           <input type="text"  class="form-control" id="pro_pla" disabled="true" required="true" placeholder="Ingrese.." aria-describedby="basic-addon2">
 
                         </div>
              
@@ -465,10 +522,18 @@
                 <div class="form-group  ">
                     <div class="input-group ">
                        <span class="input-group-addon" id="basic-addon2">Servicio</span>    
-                       <input type="text"  class="form-control" id="ser_pla"  required="true" placeholder="Ingrese.." aria-describedby="basic-addon2">
+                       <input type="text"  class="form-control" id="ser_pla"  disabled="true" required="true" placeholder="Ingrese.." aria-describedby="basic-addon2">
                        <span class="input-group-addon" id="basic-addon2">Cliente</span>    
-                      <input type="text"  class="form-control" id="cli_pla"  required="true" placeholder="Ingrese.." aria-describedby="basic-addon2">
+                       <input type="text"  class="form-control" id="cli_pla" disabled="true" required="true" placeholder="Ingrese.." aria-describedby="basic-addon2">
                  
+                    
+                    </div>
+                  </div>
+                <div class="form-group  ">
+                    <div class="input-group ">
+                       <span class="input-group-addon" id="basic-addon2">S.O</span>    
+                       <input type="text"  class="form-control" id="so_pla"  required="true" placeholder="Ingrese.." aria-describedby="basic-addon2">
+                      
                     
                     </div>
                   </div>
@@ -510,10 +575,8 @@
                         <p></p>
                     </div>
                     <div class="modal-footer ">
-                        <input type="hidden" id="run_usuario">
-
-
-                        <button type="button" class="btn btn-default grupo2" id="btnmensaje" data-dismiss="modal"><span class="glyphicon glyphicon-remove-circle"></span> Cerrar</button>
+                      
+        <button type="button" class="btn btn-default grupo2" id="btnmensaje" data-dismiss="modal"><span class="glyphicon glyphicon-remove-circle"></span> Cerrar</button>
 
                     </div>
                 </div>

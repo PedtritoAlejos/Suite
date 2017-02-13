@@ -77,7 +77,17 @@
                                      
                                 </div>
                                
-
+                                <div class="form-group">
+                                    <label>Seleccione el tipo componente</label>
+                                    <select class="form-control" required="true" name="tipo_componente" >
+                                        <option value="" required="true">Seleccione</option>
+                                        <?php
+                                        foreach ($lista  as $value) {
+                                            echo "<option value='" . $value->id_tipo_componente . "'>" . $value->nombre . "</option>";
+                                        }
+                                        ?>
+                                    </select>
+                                </div>
                             </div>
                             <div class="col-md-6">
 
@@ -91,17 +101,7 @@
                                 
                                 
                              
-                                <div class="form-group">
-                                    <label>Seleccione el tipo componente</label>
-                                    <select class="form-control" required="true" name="tipo_componente" >
-                                        <option value="" required="true">Seleccione</option>
-                                        <?php
-                                        foreach ($lista  as $value) {
-                                            echo "<option value='" . $value->id_tipo_componente . "'>" . $value->nombre . "</option>";
-                                        }
-                                        ?>
-                                    </select>
-                                </div>
+                                
                             </div>
                           </div>
                        <?php 

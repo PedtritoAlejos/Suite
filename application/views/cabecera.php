@@ -74,6 +74,12 @@ var base_url ;
                  //llamo al metodo de actualizar tipo componente
                   modificar_tipo_componente_ajax();
                 });
+                //actualizar platlaforma 
+                $("#form_updateplataforma").submit(function(e){
+                    e.preventDefault();
+                 //llamo al metodo de actualizar tipo componente
+                  modificar_plataforma_ajax();
+                });
                 
                $("#form_insert").submit(function (e){
                     e.preventDefault();

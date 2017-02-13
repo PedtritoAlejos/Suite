@@ -17,22 +17,8 @@ class m_plataforma extends CI_Model {
   const STATUS_ACTIVO = 1; //constante con el valor de Usuario activo
      
      
-    public function agregar_plataforma ($nombre,$cpu,$ram,$so,$ip,$id_cliente,$id_proposito,$id_servicio){
-          $sql= "INSERT INTO plataforma(id_plataforma,nombre,cpu,ram,so,ip,id_cliente,id_proposito,id_servicio) VALUES(0,'".$nombre."','".$cpu."','".$ram."','".$so."','".$ip."','".$id_cliente."','".$id_proposito."','".$id_servicio."')";
-        if ( $this->db->query($sql) ){
-            return $this->db->insert_id(); // devuelve el id generado de la plataforma
-        } else {
-            return false;
-        }
-        
-    }
-    public function actualizar_plataforma (){
-        
-    }
-    
-    public function eliminar_plataforma (){
-        
-    }
+   
+   
     public function listar_plataforma(){
        
         $this->db->select("plataforma.id_plataforma as 'Codigo',plataforma.nombre  as 'Nombre' ,plataforma.ip as 'Ip' ,plataforma.cpu as 'Cpu',servicio.nombre as 'Servicio'"
@@ -56,4 +42,63 @@ class m_plataforma extends CI_Model {
        
         return $this->db->get()->result();
     }
+    
+      public function eliminar_plataforma($id_plataforma){
+        return     $this->db->set("activo", self::STATUS_DELETED)->where("id_plataforma", $id_plataforma)->update("plataforma");
+        }
+    
+    public function actualizar_plataforma($cod,$nombre,$cpu,$ram,$ip,$so) {
+             $data = array(
+                            
+                            'nombre' => $nombre,
+                            'cpu' => $cpu,
+                            'ram' => $ram,
+                            'so' => $so,
+                            'ip' => $ip,
+                           
+                         );
+                         $this->db->where('id_plataforma', $cod);
+
+           return $this->db->update('plataforma', $data); 
+        }
+        /*--------- metodos para crear una plataforma -----------*/
+        
+     
+        public function agregar_plataforma ($nombre,$cpu,$ram,$so,$ip,$id_cliente,$id_proposito,$id_servicio){
+            
+          $sql= "INSERT INTO plataforma(id_plataforma,nombre,cpu,ram,so,ip,id_cliente,id_proposito,id_servicio,activo) VALUES(0,'".$nombre."','".$cpu."','".$ram."','".$so."','".$ip."','".$id_cliente."','".$id_proposito."','".$id_servicio."')";
+            if ( $this->db->query($sql) ){
+                return $this->db->insert(); // devuelve el id generado de la plataforma
+            } else {
+                return false;
+            }
+        
+         }
+        
+        public function agregar_proposito($nombre,$descripcion){
+            
+              $data = array('nombre' => $nombre,
+                            'descripcion' => $descripcion,
+                            'observacion_final' => 'En espera...'
+                           );
+               $this->db->insert('proposito',$data);
+               return $this->db->mysql_insert_id();
+
+        }
+        
+        public function insertar_servicio($nombre,$descripcion,$tipo_servicio,$run_usuario,$cliente){
+             $sql= "INSERT INTO servicio(id_servicio, nombre,descripcion, id_tipo_servicio,"
+            . "run_usuario,id_cliente,activo) VALUES(0,'". $nombre."','".$descripcion."' ,'". $tipo_servicio .""
+         . "','".$run_usuario."','".$cliente."','".self::STATUS_ACTIVO."')";
+         if ( $this->db->query($sql) ){
+            return $this->db->insert_id(); // devuelve el id generado del servicio
+        } else {
+            return false;
+        }
+            
+        }
+        
+       
+    
+        
 }
