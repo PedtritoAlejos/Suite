@@ -107,7 +107,7 @@
                         'type'           =>'text');   
             
         
-       $ds_po    =array('name'          =>'$ds_po',
+       $ds_po    =array('name'          =>'ds_po',
                         'maxlength'      =>'100' ,
                         'class'          =>'form-control',
                         'value'          => set_value('ds_po'),
@@ -284,7 +284,7 @@
                                 </div>
                                 <div class="form-group">
                                     <label>Ingrese una breve descripción de propósito</label>
-                                    <?php echo form_error('$ds_po','<div class="alert alert-danger alert-dismissible"  role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>', '</div>'); ?>
+                                    <?php echo form_error('ds_po','<div class="alert alert-danger alert-dismissible"  role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>', '</div>'); ?>
                                     <div class="input-group">
                                         <span class="input-group-addon" id="basic-addon1">Descripción</span>
                                         

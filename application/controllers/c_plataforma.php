@@ -25,6 +25,15 @@ class c_plataforma extends CI_Controller{
         $this->load->view("v_plataforma", compact("lista","lista_ts"));
         $this->load->view("v_footer");
     }
+    public function index_mensaje($mensaje){
+        $lista=$this->listar_cliente();
+        $lista_ts=$this->mostrar_ts();
+        $this->load->view("cabecera");
+        $this->load->view("v_menu_superior");
+        $this->load->view("v_menu_items");
+        $this->load->view("v_plataforma", compact("lista","lista_ts","mensaje"));
+        $this->load->view("v_footer");
+    }
    
     public function mostrar_ts(){
         $this->load->model("m_plataforma");
@@ -43,7 +52,7 @@ class c_plataforma extends CI_Controller{
     
     public function formulario_plataforma(){
           if($this->input->post()){
-              $mensaje="";
+              $mensaje="valor por defecto";
                 /*datos del servidor*/
             $this->form_validation->set_rules('nombre_servidor', 'Nombre', 'required|callback_letras_acentos_formato');
             $this->form_validation->set_rules('cpu', 'CPU', 'required|numeric');
@@ -54,7 +63,7 @@ class c_plataforma extends CI_Controller{
             /*datos del servicio*/
             $this->form_validation->set_rules('servicio', 'Servicio', 'required|callback_letras_acentos_formato');
             $this->form_validation->set_rules('proposito', 'Propósito', 'required|callback_letras_acentos_formato');
-            $this->form_validation->set_rules('ds_po', 'Descripción propósito', 'required|callback_letras_acentos_formato');
+            $this->form_validation->set_rules('ds_po', 'Descripción_propósito', 'required|callback_letras_acentos_formato');
             $this->form_validation->set_rules('descripcion', 'Descripción', 'required|callback_letras_acentos_formato');
             $this->form_validation->set_rules('id_cliente', 'Cliente', 'required|numeric');
             $this->form_validation->set_rules('tipo_servicio', 'Tipo servicio', 'required|numeric');
@@ -68,17 +77,51 @@ class c_plataforma extends CI_Controller{
             
            if($this->form_validation->run()===true){
              $id_proposito = $this->insertar_proposito($this->input->post("proposito"), $this->input->post("ds_po"));
-             
-             $id_servicio =$this->agregar_servicio($this->input->post("servicio"), $this->input->post("descripcion"),
+             if(is_numeric($id_proposito)){
+                 $id_servicio =$this->agregar_servicio($this->input->post("servicio"), $this->input->post("descripcion"),
              $this->input->post("tipo_servicio")  , $this->input->post("run_usuario"), $this->input->post("id_cliente"));
-             $id_cliente= $this->input->post("id_cliente");
+                 if(is_numeric($id_servicio)){
+                 $id_cliente= $this->input->post("id_cliente");
+                 $nombre_servidor =$this->input->post("nombre_servidor");
+                 $cpu=$this->input->post("cpu");
+                 $ram=$this->input->post("ram");
+                 $so=$this->input->post("so");
+                 $ip=$this->input->post("ip");
+              if( $this->insertar_plataforma($nombre_servidor, $cpu , $ram, $so,$ip , $id_cliente,
+                 $id_proposito, $id_servicio)){
+                  $mensaje=' <div class="alert alert-success alert-dismissible" role="alert">
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+  <strong>Exito!</strong>.  Agregado correctamente</div>'; 
+                    
+                    
+              }else{
+                   $mensaje=' <div class="alert alert-success alert-dismissible" role="alert">
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+  <strong>Exito!</strong>.  Agregado correctamente</div>'; 
+                    
+             }      
+                 
+                 }else{
+                       $mensaje=' <div class="alert alert-danger alert-dismissible" role="alert">
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+  <strong>Exito!</strong>.  Error al agregar servicio</div>'; 
+                 }
+                 
+             }else{
+                    $mensaje=' <div class="alert alert-danger alert-dismissible" role="alert">
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+  <strong>Exito!</strong>.  Error al agregar propósito</div>'; 
+             }
+             
+            $this->index_mensaje($mensaje);
+           
              
            }else{
                $this->index();
            }
            
           }else {
-              echo $this->index();
+               $this->index();
           }
     }
     
