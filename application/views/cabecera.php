@@ -80,6 +80,12 @@ var base_url ;
                  //llamo al metodo de actualizar tipo componente
                   modificar_plataforma_ajax();
                 });
+                //actualizar sistema
+                $("#form_update_sistema").submit(function(e){
+                    e.preventDefault();
+                 //llamo al metodo de actualizar sistema
+                  modificar_sistema_ajax();
+                });
                 
                $("#form_insert").submit(function (e){
                     e.preventDefault();

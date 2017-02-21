@@ -95,9 +95,9 @@ class c_plataforma extends CI_Controller{
                     
                     
               }else{
-                   $mensaje=' <div class="alert alert-success alert-dismissible" role="alert">
+                   $mensaje=' <div class="alert alert-danger alert-dismissible" role="alert">
   <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-  <strong>Exito!</strong>.  Agregado correctamente</div>'; 
+  <strong>Exito!</strong>. Error al agregar!</div>'; 
                     
              }      
                  
@@ -137,7 +137,7 @@ class c_plataforma extends CI_Controller{
     }
     public function insertar_plataforma($nombre,$cpu,$ram,$so,$ip,$id_cliente,$id_proposito,$id_servicio){
         $this->load->model("m_plataforma");
-        $this->m_plataforma->agregar_plataforma ($nombre,$cpu,$ram,$so,$ip,$id_cliente,$id_proposito,$id_servicio);
+      return  $this->m_plataforma->agregar_plataforma ($nombre,$cpu,$ram,$so,$ip,$id_cliente,$id_proposito,$id_servicio);
         
     }
     
