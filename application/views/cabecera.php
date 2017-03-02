@@ -77,8 +77,13 @@ var base_url ;
                 //actualizar platlaforma 
                 $("#form_updateplataforma").submit(function(e){
                     e.preventDefault();
-                 //llamo al metodo de actualizar tipo componente
+                 //llamo al metodo de actualizar plataforma
                   modificar_plataforma_ajax();
+                });
+                $("#form_update_tmuestra").submit(function(e){
+                    e.preventDefault();
+                 //llamo al metodo de actualizar tipo muestra
+                  modificar_tipo_muestra_ajax();
                 });
                 //actualizar sistema
                 $("#form_update_sistema").submit(function(e){

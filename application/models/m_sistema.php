@@ -14,7 +14,7 @@
 class m_sistema extends CI_Model{
     //put your code here
       const STATUS_DELETED = 0; //constante con el valor de eliminado
-  const STATUS_ACTIVO = 1; //constante con el valor  activo
+      const STATUS_ACTIVO = 1; //constante con el valor  activo
      
      
     

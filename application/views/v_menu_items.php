@@ -26,6 +26,9 @@
                      <li>
                         <a href="<?=base_url("index.php/c_sistema/index") ?>"><i class="fa fa-fw fa-desktop"></i> Administrar sistema</a>
                     </li>
+                     <li>
+                        <a href="<?=base_url("index.php/c_tipo_muestra/index") ?>"><i class="fa fa-fw fa-desktop"></i> Administrar tipo muestra</a>
+                    </li>
                    
                     <li id="cliente" >
                         <a href="<?=base_url("index.php/c_crud/index")?>" ><i class="fa fa-fw fa-edit"></i> Agregar cliente</a>
